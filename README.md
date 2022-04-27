@@ -11,13 +11,13 @@ Arvtelg
 xy-koordinaatsüsteem
 
 3) Funktsioonide graafikud
-Graafikute joonestamise eeskiri
-Lineaarfunktsiooni ja võrdelise seose graafik
-Lineaarfunktsiooni parameetrite olulisus
-Pöördvõrdelise seose funktsiooni graafik
-Nulliga jagamine
-Ruutfunktsiooni graafik
-Punkti asumine joonel
+Graafikute joonestamise eeskiri//
+Lineaarfunktsiooni ja võrdelise seose graafik//
+Lineaarfunktsiooni parameetrite olulisus//
+Pöördvõrdelise seose funktsiooni graafik//
+Nulliga jagamine//
+Ruutfunktsiooni graafik//
+Punkti asumine joonel//
 
 4) Funktsioonide graafikute lõikepunktide leidmine
 Üldiselt lõikepunktidest
