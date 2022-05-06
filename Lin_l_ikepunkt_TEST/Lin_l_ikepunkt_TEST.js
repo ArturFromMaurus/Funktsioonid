@@ -149,6 +149,8 @@ function Ylesanne(){
   tous_K2=(round_0(random(-100,100)/5)*5)/10;
   vabaliige_B1=(round_0(random(-50,50)/5)*5)/10;
   vabaliige_B2=(round_0(random(-50,50)/5)*5)/10;
+
+  
   
   if (tous_K1<0 && tous_K2<0){
     tous_K1=tous_K1*(-1);
@@ -212,9 +214,14 @@ function Kontroll(){
   
   sisend_x=round_3(INPUT_X.value());
   sisend_y=round_1(INPUT_Y.value());
-  // if (tõus_K1*sisend_x+vabaliige_B1)
-  võrrandi_VP=round_1(tous_K1*sisend_x+vabaliige_B1);
-  võrrandi_PP=round_1(tous_K2*sisend_x+vabaliige_B2);
+  võrrandi_VP=round_3(tous_K1*sisend_x+vabaliige_B1);
+  võrrandi_PP=round_3(tous_K2*sisend_x+vabaliige_B2);
+  võrrandi_PP=round_2(võrrandi_PP);
+  võrrandi_VP=round_2(võrrandi_VP);
+  võrrandi_VP=round_1(võrrandi_VP);
+  võrrandi_PP=round_1(võrrandi_PP);
+  
+  //console.log(sisend_x,sisend_y,võrrandi_VP, võrrandi_PP);
   
   
   
