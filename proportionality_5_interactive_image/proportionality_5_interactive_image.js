@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(700,200);
+  createCanvas(300,300);
   background(55);
   x_coord=500;
 }
@@ -18,6 +18,9 @@ function line_y() {
   if (x1_coord>width) {
     x1_coord=width;
   }
+  if (x1_coord<0){
+    x1_coord=0;
+  }
   
   strokeWeight(0);
   stroke(0);
@@ -33,6 +36,10 @@ function line_x() {
   
   if (x2_coord>width) {
     x2_coord=width;
+  }
+  
+    if (x2_coord<0){
+    x1_coord=0;
   }
   
   strokeWeight(0);
