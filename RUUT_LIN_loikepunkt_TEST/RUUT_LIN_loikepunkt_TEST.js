@@ -459,22 +459,41 @@ function mouse_Hover(){
   circle(mouseX, mouseY, punkti_raadius);
   pop(); 
   
+   if ((mouseX<=(width/2)) && (mouseY<=((height-teksti_kasti_kõrgus)/2))){
+    strokeWeight(0);
+    fill(116,187,251,200);
+    rect(mouseX, mouseY, 55, 55, 15);
+    fill(0);
+    text("X: "+ hover_X, mouseX+11.5, mouseY+21);
+    text("Y: "+hover_Y , mouseX+11.5, mouseY+41);
+  } else if ((mouseX<=(width/2)) && (mouseY>=((height-teksti_kasti_kõrgus)/2))) {
+    strokeWeight(0);
+    fill(116,187,251,200);
+    rect(mouseX, mouseY-60, 55, 55, 15);
+    fill(0);
+    text("X: "+hover_X, mouseX+11.5, mouseY-39);
+    text("Y: "+hover_Y, mouseX+11.5, mouseY-19);
+  } else if ((mouseX>=(width/2)) && (mouseY>=((height-teksti_kasti_kõrgus)/2))) {
+    strokeWeight(0);
+    fill(116,187,251,200);
+    rect(mouseX-60, mouseY-60, 55, 55, 15);
+    fill(0);
+    text("X: "+ hover_X, mouseX-48.5,mouseY-39);
+    text("Y: "+hover_Y, mouseX-48.5, mouseY-19);
+  }else if ((mouseX>=(width/2)) && (mouseY<=((height-teksti_kasti_kõrgus)/2))) {
+    strokeWeight(0);
+    fill(116,187,251,200);
+    rect(mouseX-60, mouseY, 55, 55, 15);
+    fill(0);
+    text("X: "+ hover_X, mouseX-48.5, mouseY+21);
+    text("Y: "+ hover_Y, mouseX-48.5, mouseY+41);
+  }
+   
   } else {
     hover_X=0;
     hover_Y=0;
   }
-  
-  push();
-  strokeWeight(0);
-  fill(0,120,225,80);
-  rect(width-90, (height-teksti_kasti_kõrgus)-60, 70 ,50,15);
-  pop();
-  
-  push();
-  strokeWeight(0);
-  text("X: "+ hover_X, width-75, (height-teksti_kasti_kõrgus)-40);
-  text("Y: "+ hover_Y, width-75, (height-teksti_kasti_kõrgus)-20);
-  pop();
+
 }
 
 function Lõpp(){
@@ -504,6 +523,7 @@ function Lõpp(){
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
+  Tulemus.style("line-height","140%");
   
   
   
