@@ -223,7 +223,7 @@ function Lõpp(){
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
-  
+  Tulemus.style("line-height","140%");
   
   
   lõpetamise_tingimus=true;
