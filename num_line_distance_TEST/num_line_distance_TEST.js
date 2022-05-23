@@ -3,7 +3,7 @@ var ülesannete_loendur=0;
 lõpetamise_tingimus=false;
 
 function setup() {
-  let c= createCanvas(900, 200);
+  let c= createCanvas(700, 200);
   x_koord=width/2;
   background(255);
   
@@ -16,40 +16,43 @@ function draw() {
   
   background(255);
   
-  for (x=-10;x<11;x=x+2){
-    strokeWeight(1.5);
-    line((x*30)+width/2,height/2,(x*30)+width/2,height/2-10);
-  }
+  // for (x=-10;x<11;x=x+2){
+  //   strokeWeight(1.5);
+  //   line((x*30)+width/2,height/2,(x*30)+width/2,height/2-10);
+  // }
   
+  
+  // Täisarvulised jaotised
   for (x=-10;x<11;x=x+1){
     strokeWeight(1);
-    line((x*30)+width/2,height/2,(x*30)+width/2,height/2-10);
+    line((x*30)+width/2-5,height/2,(x*30)+width/2-5,height/2-10);
   }
   
+  // 0.5 jaotised
     for (x=-10;x<10;x=x+0.5){
     strokeWeight(1);
-    line((x*30)+width/2,height/2-2,(x*30)+width/2,height/2-8);
+    line((x*30)+width/2-5,height/2-2,(x*30)+width/2-5,height/2-8);
   }
   
+  //jaotiste väärtused
   for (x=-10; x<11;x=x+1){
     fill(0);
     push();
     textSize(14);
-    text(x, (x*30)+width/2-3,height/2+17);
+    text(x, (x*30)+width/2-5-3,height/2+17);
     pop();
   }
   strokeWeight(2);
-  line((-10*30)+width/2, height/2-5, (10*30)+width/2+30, height/2-5);
+  line((-10*30)+width/2-5, height/2-5, (10*30)+width/2-5+30, height/2-5); // SIRGE
   
   //arrow
-  line(((10*30)+width/2+30)-10,height/2-10,((10*30)+width/2+30),height/2-5);
-  line(((10*30)+width/2+30)-10,height/2,((10*30)+width/2+30),height/2-5); 
+  line(((10*30)+width/2+30-5)-10,height/2-10,((10*30)+width/2+30)-5,height/2-5);
+  line(((10*30)+width/2+30-5)-10,height/2,((10*30)+width/2+30)-5 ,height/2-5); 
   
   fill(255,0,0);
   push();
   strokeWeight(3);
-  line((0*30)+width/2,height/2,(0*30)+width/2, height/2-10);
-  pop();
+  line((0*30)+width/2-5,height/2,(0*30)+width/2-5, height/2-10); // Null-punkti joon
   
   createPoints(yl_number_teisendatud_1, yl_number_teisendatud_2);
   
@@ -208,7 +211,7 @@ function Lõpp(){
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
-  
+  Tulemus.style("line-height","140%");
   
   
   lõpetamise_tingimus=true;
