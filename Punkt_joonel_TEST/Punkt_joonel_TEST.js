@@ -156,12 +156,14 @@ function create_TEXTS(){
   ül_text_1.style("font-size","20px");
   
   LaTeX_võrrand=createP("");
-  LaTeX_võrrand.position(310,15);
+  LaTeX_võrrand.position(350,15);
   LaTeX_võrrand.style("font-size","20px");
+  LaTeX_võrrand.style("line-height","140%")
   
   ül_text_2=createP("Kontrolli, kas punkt P(,) asub funktsiooniga määratud joonel<br>?");
   ül_text_2.position(50,60);
   ül_text_2.style("font-size","20px");
+  ül_text_2.style("line-height","140%")
   
   tulemus_txt=createP("");
   tulemus_txt.position(width/2-180,height/2+50);
@@ -260,6 +262,7 @@ function Lõpp(){
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
+  Tulemus.style("line-height","140%");
   
   lõpetamise_tingimus=true;
 }
