@@ -167,7 +167,7 @@ function Reset(){
 function create_TEXT(){
   result_text=createP("");
   result_text.style("font-size","16px");
-  result_text.position(width/2-30,155);
+  result_text.position(width/2+50,155);
   
   yl_text=createP("");
   yl_text.style("font-size","20px");
