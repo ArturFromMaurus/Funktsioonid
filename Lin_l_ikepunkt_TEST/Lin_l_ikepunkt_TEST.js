@@ -177,10 +177,10 @@ function Ylesanne(){
   LaTeX_string_full="\\begin{cases}" +LaTeX_string1+" \\newline "+LaTeX_string2+ "\\end{cases}";
   
   katex.render(LaTeX_string_full, TeX_võrrand.elt);
-  yl_text.html("On antud funktsioonid:<br><br><br> Kanna funktsioonide lõikepunkti koordinaadid lünkadesse, tulemused <br>ümarda 3 kohta pärast koma, ning kanna leitud punkt graafikule<br> ligikaudselt.");
+  yl_text.html("On antud funktsioonid:<br><br><br> Kanna funktsioonide lõikepunkti koordinaadid lünkadesse,<br>tulemused ümarda 3 kohta pärast koma, ning kanna leitud<br> punkt graafikule ligikaudselt.");
   yl_text2.html("Vastus:")
   
-  punkt_P=str("L( \\hspace{35px}; \\hspace{35px}     )");
+  punkt_P=str("L( \\hspace{40px}; \\hspace{40px}     )");
   katex.render(punkt_P, TeX_punkti_koord.elt);
 }
 
@@ -188,22 +188,42 @@ function Ylesanne(){
 function Write_texts(){
   yl_text=createP("");
   yl_text.position(35,(height-teksti_kasti_kõrgus)+25);
+  yl_text.style("font-size", "16px")
+  yl_text.style("line-height", "140%")
+  yl_text.style("font-family",'"Roboto", sans-serif')
   
   yl_text2=createP("");
-  yl_text2.position(35,(height-teksti_kasti_kõrgus)+150);
-
+  yl_text2.position(35,(height-teksti_kasti_kõrgus)+210);
+  yl_text2.style("font-size", "16px")
+  yl_text2.style("line-height", "140%")
+  yl_text2.style("font-family",'"Roboto", sans-serif')
+  
   result_text=createP("");
-  result_text.position(160,(height-teksti_kasti_kõrgus)+124);
+  result_text.position(160,(height-teksti_kasti_kõrgus)+180);
+  result_text.style("font-size", "16px")
+  result_text.style("line-height", "140%")
+  result_text.style("font-family",'"Roboto", sans-serif')
+  
   
   punkti_result=createP("");
-  punkti_result.position(35,(height-teksti_kasti_kõrgus)+220 );
+  punkti_result.position(35,(height-teksti_kasti_kõrgus)+240 );
+  punkti_result.style("font-size", "16px")
+  punkti_result.style("line-height", "140%")
+  punkti_result.style("font-family",'"Roboto", sans-serif')
+  
   
   TeX_võrrand=createP("");
-  TeX_võrrand.style("font-size","18px");
-  TeX_võrrand.position(width/2-60,(height-303));
+  TeX_võrrand.style("font-size","16px");
+  TeX_võrrand.position(width/2-50,(height-295));
+  TeX_võrrand.style("line-height", "140%")
+  TeX_võrrand.style("font-family",'"Roboto", sans-serif')
+  
   
   TeX_punkti_koord=createP("");
-  TeX_punkti_koord.position(91, (height-teksti_kasti_kõrgus)+148);
+  TeX_punkti_koord.position(91, (height-teksti_kasti_kõrgus)+210);
+  TeX_punkti_koord.style("font-size", "16px")
+  TeX_punkti_koord.style("line-height", "140%")
+  TeX_punkti_koord.style("font-family",'"Roboto", sans-serif')
   
 }
 
@@ -321,11 +341,17 @@ function Reset(){
   // ###################### SISENDID #################################
   INPUT_X=createInput();
   INPUT_X.size(55,17);
-  INPUT_X.position(115,(height-teksti_kasti_kõrgus)+165);
+  INPUT_X.position(115,(height-teksti_kasti_kõrgus)+226);
+  INPUT_X.style("font-size", "16px")
+  INPUT_X.style("line-height", "140%")
+  INPUT_X.style("font-family",'"Roboto", sans-serif')
   
   INPUT_Y=createInput();
   INPUT_Y.size(55,17);
-  INPUT_Y.position(190,(height-teksti_kasti_kõrgus)+165);
+  INPUT_Y.position(190,(height-teksti_kasti_kõrgus)+226);
+  INPUT_Y.style("font-size", "16px")
+  INPUT_Y.style("line-height", "140%")
+  INPUT_Y.style("font-family",'"Roboto", sans-serif')
   
   ülesannete_loendur=ülesannete_loendur+1;
 
