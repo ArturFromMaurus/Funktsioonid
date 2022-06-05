@@ -39,7 +39,7 @@ function line_x() {
   }
   
     if (x2_coord<0){
-    x1_coord=0;
+    x2_coord=0;
   }
   
   strokeWeight(0);
