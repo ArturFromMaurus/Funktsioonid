@@ -3,7 +3,7 @@ var ülesannete_loendur=0;
 lõpetamise_tingimus=false;
 
 function setup() {
-  let c= createCanvas(900, 200);
+  let c= createCanvas(700, 200);
   x_koord=width/2;
   background(255);
   
@@ -15,41 +15,39 @@ function draw() {
   clear();
   
   background(255);
-  
-  for (x=-10;x<11;x=x+2){
-    strokeWeight(1.5);
-    line((x*30)+width/2,height/2,(x*30)+width/2,height/2-10);
-  }
-  
+
+  // Täisarvulised jaotised
   for (x=-10;x<11;x=x+1){
     strokeWeight(1);
-    line((x*30)+width/2,height/2,(x*30)+width/2,height/2-10);
+    line((x*30)+width/2-5,height/2,(x*30)+width/2-5,height/2-10);
   }
   
+  // 0.5 jaotised
     for (x=-10;x<10;x=x+0.5){
     strokeWeight(1);
-    line((x*30)+width/2,height/2-2,(x*30)+width/2,height/2-8);
+    line((x*30)+width/2-5,height/2-2,(x*30)+width/2-5,height/2-8);
   }
   
+  //jaotiste väärtused
   for (x=-10; x<11;x=x+1){
     fill(0);
     push();
     textSize(14);
-    text(x, (x*30)+width/2-3,height/2+17);
+    text(x, (x*30)+width/2-5-3,height/2+17);
     pop();
   }
   strokeWeight(2);
-  line((-10*30)+width/2, height/2-5, (10*30)+width/2+30, height/2-5);
+  line((-10*30)+width/2-5, height/2-5, (10*30)+width/2-5+30, height/2-5); // SIRGE
   
   //arrow
-  line(((10*30)+width/2+30)-10,height/2-10,((10*30)+width/2+30),height/2-5);
-  line(((10*30)+width/2+30)-10,height/2,((10*30)+width/2+30),height/2-5); 
+  line(((10*30)+width/2+30-5)-10,height/2-10,((10*30)+width/2+30)-5,height/2-5);
+  line(((10*30)+width/2+30-5)-10,height/2,((10*30)+width/2+30)-5 ,height/2-5); 
   
   fill(255,0,0);
   push();
   strokeWeight(3);
-  line((0*30)+width/2,height/2,(0*30)+width/2, height/2-10);
-  pop();
+  line((0*30)+width/2-5,height/2,(0*30)+width/2-5, height/2-10); // Null-punkti joon
+  
   createPoint(x_koord);
   
   
@@ -94,33 +92,20 @@ function createPoint(x){
 
 function mousePressed(){
   if (mouseX>0 && mouseX<width && mouseY>0 && mouseY<height){
-    if (mouseX>750){
-      x_koord=750;
-    } else if (mouseX<150){
-      x_koord=150;
+    if (mouseX>(10*30)+width/2-5){
+      x_koord=(10*30)+width/2-5;
+    } else if (mouseX<(-10*30)+width/2-5){
+      x_koord=(-10*30)+width/2-5;
     } else {
       x_koord=mouseX
     }
   }
 }
 
-// function mouseDragged(){
-//   if (mouseX>0 && mouseX<width && mouseY>0 && mouseY<height){
-//     if (mouseX>750){
-//       x_koord=750;
-//     } else if (mouseX<150){
-//       x_koord=150;
-//     } else {
-//       x_koord=mouseX
-//     }
-//   }
-// }
-
 function Ylesanne() {
   yl_number=(round_0(random(-100,100)/5)*5)/10;
   yl_text.html("Märgi teljele punkt P("+yl_number+").");
-  yl_text.position(20,10);
-  yl_number_teisendatud = (yl_number*30)+width/2;
+  yl_number_teisendatud = (yl_number*30)+width/2-5;
 }
 
 function Kontroll() {
@@ -177,12 +162,12 @@ function Reset(){
 function create_TEXT(){
   result_text=createP("");
   result_text.style("font-size","20px");
-  result_text.position(width/2-30,10);
+  result_text.position((-10*30)+width/2-5,height-70);
   
   yl_number=0;
   yl_text=createP("");
   yl_text.style("font-size","20px");
-  yl_text.position(20,5);
+  yl_text.position((-10*30)+width/2-5,5);
 }
 
 function keyPressed() {
