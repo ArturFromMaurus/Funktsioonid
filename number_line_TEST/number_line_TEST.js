@@ -135,25 +135,33 @@ function Reset(){
   
   result_text.html("");
   Ylesanne();
-  KONTROLL_NUPP=createButton("Kontrolli");
-  KONTROLL_NUPP.size(70,40);
-  KONTROLL_NUPP.style("background-color",color(80,139,195,255));
-  KONTROLL_NUPP.style("color",color(255,255,255,255));
-  KONTROLL_NUPP.position(width/2-100, height+30);
-  
-  
-  
+ KONTROLL_NUPP=createButton("Kontrolli");
+  KONTROLL_NUPP.style('padding','10px 20px');
+  KONTROLL_NUPP.style('background-color','MidNightBlue');
+  KONTROLL_NUPP.style('color','white');
+  KONTROLL_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  KONTROLL_NUPP.style('margin-top','30px');
+  KONTROLL_NUPP.style('margin-left','100px');
+ 
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.size(70,40);
-  RESET_NUPP.style("background-color",color(80,139,195,255));
-  RESET_NUPP.style("color",color(255,255,255,255));
-  RESET_NUPP.position(width/2+10,height+30);
-  
+  RESET_NUPP.style('padding','10px 20px');
+  RESET_NUPP.style('background-color','#508bc3');
+  RESET_NUPP.style('color','white');
+  RESET_NUPP.style('border-radius','30px');
+  //RESET_NUPP.position(width/2+10,height+30);
+  RESET_NUPP.style('margin-top','30px');
+  RESET_NUPP.style('margin-left','20px');
+ 
   LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.size(70,40);
-  LÕPETA_NUPP.style("background-color",color(80,139,195,255));
-  LÕPETA_NUPP.style("color",color(255,255,255,255));
-  LÕPETA_NUPP.position(width/2+110,height+30);
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  //LÕPETA_NUPP.position(width/2+140,height+30);
+  LÕPETA_NUPP.style('margin-top','30px');
+  LÕPETA_NUPP.style('margin-left','80px');
   
   ülesannete_loendur=ülesannete_loendur+1;
   
