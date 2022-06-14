@@ -138,22 +138,30 @@ function Ylesanne(){
   yl_Y2_teisendatud = -1*(yl_Y2*25)+height/2;
   
   distance_of_points = round_0(sqrt((yl_X1-yl_X2)*(yl_X1-yl_X2)+(yl_Y1-yl_Y2)*(yl_Y1-yl_Y2))*10)/10;
-  yl_text.html("Leia punkti A("+yl_X1+"; "+yl_Y1+") ning punkti B("+yl_X2+"; "+yl_Y2+") vaheline kaugus.");
-  yl_text2.html("Vastus ümarda 1 koht pärast koma.")
+  yl_text.html("Leia punkti A( "+yl_X1+"; "+yl_Y1+") ning punkti B( "+yl_X2+"; "+yl_Y2+") vaheline kaugus.<br>Vastus ümarda 1 koht pärast koma.");
   vastus_TEXT.html("Vastus: ");
 }
 
 function Write_texts(){
   yl_text=createP("");
   yl_text.position(35,height+5);
-  yl_text2=createP("");
-  yl_text2.position(35,height+27);
+  yl_text.style("font-size","16px");
+  yl_text.style("line-height","140%");
+  yl_text.style("font-family","'Roboto', sans-serif");
+  
   
   vastus_TEXT = createP("");
   vastus_TEXT.position(35,height+90);
+  vastus_TEXT.style("font-size","16px");
+  vastus_TEXT.style("line-height","140%");
+  vastus_TEXT.style("font-family","'Roboto', sans-serif");
   
   result_text=createP("");
   result_text.position(35,height+55);
+  result_text.style("font-size","16px");
+  result_text.style("line-height","140%");
+  result_text.style("font-family","'Roboto', sans-serif");
+  
 }
 
 function Kontroll(){
@@ -186,24 +194,36 @@ function Reset(){
   result_text.html("");
   Ylesanne();
   KONTROLL_NUPP=createButton("Kontrolli");
-  KONTROLL_NUPP.size(70,40);
-  KONTROLL_NUPP.style("background-color",color(80,139,195,255));
-  KONTROLL_NUPP.style("color",color(255,255,255,255));
-  KONTROLL_NUPP.position(4*width/5-90, height+95);
-  
-  
-  
+  KONTROLL_NUPP.style('padding','10px 20px');
+  KONTROLL_NUPP.style('background-color','MidNightBlue');
+  KONTROLL_NUPP.style('color','white');
+  KONTROLL_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  KONTROLL_NUPP.style('margin-top','30px');
+  KONTROLL_NUPP.style('margin-left','100px');
+ 
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.size(70,40);
-  RESET_NUPP.style("background-color",color(80,139,195,255));
-  RESET_NUPP.style("color",color(255,255,255,255));
-  RESET_NUPP.position(4*width/5+10,height+95);
-  
+  RESET_NUPP.style('padding','10px 20px');
+  RESET_NUPP.style('background-color','#508bc3');
+  RESET_NUPP.style('color','white');
+  RESET_NUPP.style('border-radius','30px');
+  //RESET_NUPP.position(width/2+10,height+30);
+  RESET_NUPP.style('margin-top','30px');
+  RESET_NUPP.style('margin-left','20px');
+ 
   LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.size(70,25);
-  LÕPETA_NUPP.style("background-color",color(80,139,195,255));
-  LÕPETA_NUPP.style("color",color(255,255,255,255));
-  LÕPETA_NUPP.position(4*width/5+10,height+150);
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  //LÕPETA_NUPP.position(width/2+140,height+30);
+  LÕPETA_NUPP.style('margin-top','150px');
+  LÕPETA_NUPP.style('margin-left','80px');
+  
+//   KONTROLL_NUPP.position(4*width/5-90, height+95);
+//   RESET_NUPP.position(4*width/5+10,height+95);
+//   LÕPETA_NUPP.position(4*width/5+10,height+150);
   
   
   VASTUS = createInput();
@@ -234,7 +254,6 @@ function Lõpp(){
     LÕPETA_NUPP.remove();
     KONTROLL_NUPP.remove();
     yl_text.remove();
-    yl_text2.remove();
     result_text.remove();
     VASTUS.remove();
     vastus_TEXT.remove();
