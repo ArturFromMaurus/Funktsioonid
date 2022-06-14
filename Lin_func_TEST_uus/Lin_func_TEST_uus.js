@@ -181,44 +181,59 @@ function Ylesanne(){
   LaTeX_string="y="+str(tous_K)+"x"+vabaliige_B_str;
   
   katex.render(LaTeX_string, TeX_võrrand.elt);
-  yl_text.html("On antud funktsioon:<br><br> Täida funktsiooni väärtustetabel, ning <br> kanna leitud punktid graafikule.");
+  yl_text.html("On antud funktsioon:<br><br> Täida väärtustetabel, ning kanna leitud punktid graafikule.");
 }
 
 function create_TABLE(){
-  line(35,(height-300)+100,200,(height-300)+100); // horizontal line 1
-  line(35,(height-300)+125,200,(height-300)+125); //horizontal line 2
-  line(35,(height-300)+100,35,(height-300)+150); //horizontal line 3
+  line(35,(height-300)+110,200,(height-300)+110); // horizontal line 1
+  line(35,(height-300)+135,200,(height-300)+135); //horizontal line 2
+  line(35,(height-300)+110,35,(height-300)+160); //horizontal line 3
   
-  line(35,(height-300)+150,200,(height-300)+150); //vertical line 1
-  line(70,(height-300)+100,70,(height-300)+150); //vertical line 2
-  line(130,(height-300)+100,130,(height-300)+150); //vertical line 3
-  line(200,(height-300)+100,200,(height-300)+150); //vertical line 2
+  line(35,(height-300)+160,200,(height-300)+160); //vertical line 1
+  line(70,(height-300)+110,70,(height-300)+160); //vertical line 2
+  line(130,(height-300)+110,130,(height-300)+160); //vertical line 3
+  line(200,(height-300)+110,200,(height-300)+160); //vertical line 2
   push();
   strokeWeight(0.5);
-  text("X",45,(height-300)+117);
-  text("Y",45,(height-300)+142);
+  text("X",45,(height-300)+127);
+  text("Y",45,(height-300)+152);
   pop();
 }
 
 function Write_texts(){
   yl_text=createP("");
   yl_text.position(35,(height-300)+5);
+  yl_text.style("font-size","16px");
+  yl_text.style("line-height","140%");
+  yl_text.style("font-family","'Roboto', sans-serif");
   
   result_text=createP("");
-  result_text.position(55,(height-300)+174);
+  result_text.position(55,(height-300)+194);
+  result_text.style("font-size","16px");
+  result_text.style("line-height","140%");
+  result_text.style("font-family","'Roboto', sans-serif");
   
   TeX_võrrand=createP("");
   TeX_võrrand.style("font-size","18px");
   TeX_võrrand.position(width/2-50,(height-303));
   
   p1_text=createP("");
-  p1_text.position(55,(height-300)+193);
+  p1_text.position(55,(height-300)+217);
+  p1_text.style("font-size","16px");
+  p1_text.style("line-height","140%");
+  p1_text.style("font-family","'Roboto', sans-serif");
   
   p2_text=createP("");
-  p2_text.position(55,(height-300)+213);
+  p2_text.position(55,(height-300)+240);
+  p2_text.style("font-size","16px");
+  p2_text.style("line-height","140%");
+  p2_text.style("font-family","'Roboto', sans-serif");
   
   current_state_text=createP("Praegune seis:<br><br> 1) <br> 2) <br> 3) ")
-  current_state_text.position(35,(height-300)+140);
+  current_state_text.position(35,(height-300)+150);
+  current_state_text.style("font-size","16px");
+  current_state_text.style("line-height","140%");
+  current_state_text.style("font-family","'Roboto', sans-serif");
 }
 
 function Kontroll(){
@@ -313,45 +328,57 @@ function Reset(){
   p1_text.html("");
   p2_text.html("");
   Ylesanne();
-  
-  KONTROLL_NUPP=createButton("Kontrolli");
-  KONTROLL_NUPP.size(70,40);
-  KONTROLL_NUPP.style("background-color",color(80,139,195,255));
-  KONTROLL_NUPP.style("color",color(255,255,255,255));
-  KONTROLL_NUPP.position(4*width/5-100, (height-300)+50);
-  KONTROLL_NUPP.attribute("enabled","");
-  
-  
+    KONTROLL_NUPP=createButton("Kontrolli");
+  KONTROLL_NUPP.style('padding','10px 20px');
+  KONTROLL_NUPP.style('background-color','MidNightBlue');
+  KONTROLL_NUPP.style('color','white');
+  KONTROLL_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  KONTROLL_NUPP.style('margin-top','30px');
+  KONTROLL_NUPP.style('margin-left','100px');
+ 
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.size(70,40);
-  RESET_NUPP.style("background-color",color(80,139,195,255));
-  RESET_NUPP.style("color",color(255,255,255,255));
-  RESET_NUPP.position(4*width/5+10,(height-300)+50);
-  
+  RESET_NUPP.style('padding','10px 20px');
+  RESET_NUPP.style('background-color','#508bc3');
+  RESET_NUPP.style('color','white');
+  RESET_NUPP.style('border-radius','30px');
+  //RESET_NUPP.position(width/2+10,height+30);
+  RESET_NUPP.style('margin-top','30px');
+  RESET_NUPP.style('margin-left','20px');
+ 
   LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.size(70,30);
-  LÕPETA_NUPP.style("background-color",color(80,139,195,255));
-  LÕPETA_NUPP.style("color",color(255,255,255,255));
-  LÕPETA_NUPP.position(4*width/5+10, (height-90));
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  //LÕPETA_NUPP.position(width/2+140,height+30);
+  LÕPETA_NUPP.style('margin-top','30px');
+  LÕPETA_NUPP.style('margin-left','80px');
+  
+  KONTROLL_NUPP.position(4*width/5-250, (height-300)+90);
+  KONTROLL_NUPP.attribute("enabled","");
+  RESET_NUPP.position(4*width/5-60,(height-300)+90);
+  LÕPETA_NUPP.position(4*width/5-90, (height-90));
   
   
   // ###################### VÄÄRTUSTETABELI SISENDID #################################
   INPUT_X1=createInput();
   INPUT_X1.size(50,17)
-  INPUT_X1.position(71,(height-300)+101);
+  INPUT_X1.position(71,(height-300)+111);
   
   
   INPUT_X2=createInput();
   INPUT_X2.size(59,17)
-  INPUT_X2.position(132,(height-300)+101);
+  INPUT_X2.position(132,(height-300)+111);
   
   INPUT_Y1=createInput();
   INPUT_Y1.size(50,17)
-  INPUT_Y1.position(71,(height-300)+126);
+  INPUT_Y1.position(71,(height-300)+136);
   
   INPUT_Y2=createInput();
   INPUT_Y2.size(59,17)
-  INPUT_Y2.position(132,(height-300)+126);
+  INPUT_Y2.position(132,(height-300)+136);
   
   ülesannete_loendur=ülesannete_loendur+1;
 
