@@ -4,7 +4,7 @@ var x_koord=0.0, y_koord=0.0;
 var ülesannete_loendur=0;
 var õige_vastus=0;
 var lõpetamise_tingimus=false;
-var teksti_kasti_kõrgus=300;
+var teksti_kasti_kõrgus=350;
 var punkti_raadius=5;
 var tähed=["A","B","C","D","E","F","G"];
 
@@ -14,7 +14,7 @@ var jaotiste_arv=20;
 
 
 function setup() {
-  createCanvas(800,1100);
+  createCanvas(800,800+teksti_kasti_kõrgus);
   x_koord=width/2;
   y_koord=height/2;
   Write_texts();
@@ -219,71 +219,104 @@ function Ylesanne(){
 }
 
 function create_TABLE(){
-  line(35,(height-teksti_kasti_kõrgus)+110,550,(height-teksti_kasti_kõrgus)+110); // horizontal line 1
-  line(35,(height-teksti_kasti_kõrgus)+135,550,(height-teksti_kasti_kõrgus)+135); //horizontal line 2
-  line(35,(height-teksti_kasti_kõrgus)+160,550,(height-teksti_kasti_kõrgus)+160); //horizontal line 3
+  
+   line(35,(height-teksti_kasti_kõrgus)+130,550,(height-teksti_kasti_kõrgus)+130); // horizontal line 1
+  line(35,(height-teksti_kasti_kõrgus)+155,550,(height-teksti_kasti_kõrgus)+155); //horizontal line 2
+  line(35,(height-teksti_kasti_kõrgus)+180,550,(height-teksti_kasti_kõrgus)+180); //horizontal line 3
   
   
-  line(35,(height-teksti_kasti_kõrgus)+110,35,(height-teksti_kasti_kõrgus)+160); //vertical line 1
-  line(70,(height-teksti_kasti_kõrgus)+110,70,(height-teksti_kasti_kõrgus)+160); //vertical line 2
-  line(130,(height-teksti_kasti_kõrgus)+110,130,(height-teksti_kasti_kõrgus)+160); //vertical line 3
-  line(200,(height-teksti_kasti_kõrgus)+110,200,(height-teksti_kasti_kõrgus)+160); //vertical line 4
-  line(270,(height-teksti_kasti_kõrgus)+110,270,(height-teksti_kasti_kõrgus)+160); //vertical line 5
-  line(340,(height-teksti_kasti_kõrgus)+110,340,(height-teksti_kasti_kõrgus)+160); //vertical line 6
-  line(410,(height-teksti_kasti_kõrgus)+110,410,(height-teksti_kasti_kõrgus)+160); //vertical line 7
-  line(480,(height-teksti_kasti_kõrgus)+110,480,(height-teksti_kasti_kõrgus)+160); //vertical line 8
-  line(550,(height-teksti_kasti_kõrgus)+110,550,(height-teksti_kasti_kõrgus)+160); //vertical line 9
+  line(35,(height-teksti_kasti_kõrgus)+130,35,(height-teksti_kasti_kõrgus)+180); //vertical line 1
+  line(70,(height-teksti_kasti_kõrgus)+130,70,(height-teksti_kasti_kõrgus)+180); //vertical line 2
+  line(130,(height-teksti_kasti_kõrgus)+130,130,(height-teksti_kasti_kõrgus)+180); //vertical line 3
+  line(200,(height-teksti_kasti_kõrgus)+130,200,(height-teksti_kasti_kõrgus)+180); //vertical line 4
+  line(270,(height-teksti_kasti_kõrgus)+130,270,(height-teksti_kasti_kõrgus)+180); //vertical line 5
+  line(340,(height-teksti_kasti_kõrgus)+130,340,(height-teksti_kasti_kõrgus)+180); //vertical line 6
+  line(410,(height-teksti_kasti_kõrgus)+130,410,(height-teksti_kasti_kõrgus)+180); //vertical line 7
+  line(480,(height-teksti_kasti_kõrgus)+130,480,(height-teksti_kasti_kõrgus)+180); //vertical line 8
+  line(550,(height-teksti_kasti_kõrgus)+130,550,(height-teksti_kasti_kõrgus)+180); //vertical line 9
   
   push();
   strokeWeight(0.5);
-  text("X",45,(height-teksti_kasti_kõrgus)+127);
-  text("Y",45,(height-teksti_kasti_kõrgus)+152);
+  text("X",45,(height-teksti_kasti_kõrgus)+147);
+  text("Y",45,(height-teksti_kasti_kõrgus)+172);
   pop();
+  
   
   
   
 }
 
 function Write_texts(){
-  yl_text=createP("On antud funktsioon: <br><br>Täida funktsiooni väärtustetabel, ning kanna punktid graafikule.<br>Tulemused ümarda 3 kohta pärast koma.<br><br><br><br><br>Praegune seis:<br><br> 1) <br> 2) <br> 3)  ");
+  yl_text=createP("On antud funktsioon: <br><br>Täida funktsiooni väärtustetabel, ning kanna punktid graafikule.<br>Tulemused ümarda 1 koht pärast koma.<br><br><br><br><br>Praegune seis:<br><br> 1) <br> 2) <br> 3)  ");
   yl_text.position(35,(height-teksti_kasti_kõrgus)+17);
-  
+  yl_text.style("font-size","16px");
+  yl_text.style("line-height","140%");
+  yl_text.style("font-family","'Roboto', sans-sarif");
   
   yl_text_2=createP("<br><br><br><br><br><br><br><br><br><br> 4)<br> 5)<br> 6)<br>");
   yl_text_2.position(315, (height-teksti_kasti_kõrgus)+17);
+  yl_text_2.style("font-size","16px");
+  yl_text_2.style("line-height","140%");
+  yl_text_2.style("font-family","'Roboto', sans-sarif");
   
-  yl_text_3=createP("<br><br><br><br><br><br><br><br><br><br> 7)<br> 8)<br>");
+  yl_text_3=createP("<br><br><br><br><br><br><br><br><br><br> 7)<br> 8)");
   yl_text_3.position(515, (height-teksti_kasti_kõrgus)+17);
+  yl_text_3.style("font-size","16px");
+  yl_text_3.style("line-height","140%");
+  yl_text_3.style("font-family","'Roboto', sans-sarif");
   
   TeX_text=createP("");
-  TeX_text.position(200,(height-teksti_kasti_kõrgus)+15);
+  TeX_text.position(200,(height-teksti_kasti_kõrgus)+17);
   
   
   result_text=createP("");
-  result_text.position(55,(height-teksti_kasti_kõrgus)+195);
-  
+  result_text.position(55,(height-teksti_kasti_kõrgus)+240);
+  result_text.style("font-size","16px");
+  result_text.style("line-height","140%");
+  result_text.style("font-family","'Roboto', sans-sarif");
   
   p1_text=createP("");
-  p1_text.position(55,(height-teksti_kasti_kõrgus)+215);
+  p1_text.position(55,(height-teksti_kasti_kõrgus)+263);
+  p1_text.style("font-size","16px");
+  p1_text.style("line-height","140%");
+  p1_text.style("font-family","'Roboto', sans-sarif");
   
   p2_text=createP("");
-  p2_text.position(55,(height-teksti_kasti_kõrgus)+235);
+  p2_text.position(55,(height-teksti_kasti_kõrgus)+287);
+  p2_text.style("font-size","16px");
+  p2_text.style("line-height","140%");
+  p2_text.style("font-family","'Roboto', sans-sarif");
   
   p3_text=createP("");
-  p3_text.position(335,(height-teksti_kasti_kõrgus)+195);
+  p3_text.position(335,(height-teksti_kasti_kõrgus)+240);
+  p3_text.style("font-size","16px");
+  p3_text.style("line-height","140%");
+  p3_text.style("font-family","'Roboto', sans-sarif");
   
   p4_text=createP("");
-  p4_text.position(335,(height-teksti_kasti_kõrgus)+215);
+  p4_text.position(335,(height-teksti_kasti_kõrgus)+263);
+  p4_text.style("font-size","16px");
+  p4_text.style("line-height","140%");
+  p4_text.style("font-family","'Roboto', sans-sarif");
   
   p5_text=createP("");
-  p5_text.position(335,(height-teksti_kasti_kõrgus)+235);
+  p5_text.position(335,(height-teksti_kasti_kõrgus)+287);
+  p5_text.style("font-size","16px");
+  p5_text.style("line-height","140%");
+  p5_text.style("font-family","'Roboto', sans-sarif");
   
   p6_text=createP("");
-  p6_text.position(535,(height-teksti_kasti_kõrgus)+195);
+  p6_text.position(535,(height-teksti_kasti_kõrgus)+240);
+  p6_text.style("font-size","16px");
+  p6_text.style("line-height","140%");
+  p6_text.style("font-family","'Roboto', sans-sarif");
+  
   
   p7_text=createP("");
-  p7_text.position(535,(height-teksti_kasti_kõrgus)+215);
-  
+  p7_text.position(535,(height-teksti_kasti_kõrgus)+263);
+  p7_text.style("font-size","16px");
+  p7_text.style("line-height","140%");
+  p7_text.style("font-family","'Roboto', sans-sarif");
   
 }
 
@@ -536,84 +569,98 @@ for (var i=0; i<7; i++){
   p6_text.html("");
   p7_text.html("");
   Ylesanne();
+  
   KONTROLL_NUPP=createButton("Kontrolli");
-  KONTROLL_NUPP.size(70,40);
-  KONTROLL_NUPP.style("background-color",color(80,139,195,255));
-  KONTROLL_NUPP.style("color",color(255,255,255,255));
-  KONTROLL_NUPP.position(4*width/5-100, (height-teksti_kasti_kõrgus)+30);
-  
-  
+  KONTROLL_NUPP.style('padding','10px 20px');
+  KONTROLL_NUPP.style('background-color','MidNightBlue');
+  KONTROLL_NUPP.style('color','white');
+  KONTROLL_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  KONTROLL_NUPP.style('margin-top','30px');
+  KONTROLL_NUPP.style('margin-left','100px');
+ 
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.size(70,40);
-  RESET_NUPP.style("background-color",color(80,139,195,255));
-  RESET_NUPP.style("color",color(255,255,255,255));
-  RESET_NUPP.position(4*width/5+20,(height-teksti_kasti_kõrgus)+30);
-  
+  RESET_NUPP.style('padding','10px 20px');
+  RESET_NUPP.style('background-color','#508bc3');
+  RESET_NUPP.style('color','white');
+  RESET_NUPP.style('border-radius','30px');
+  //RESET_NUPP.position(width/2+10,height+30);
+  RESET_NUPP.style('margin-top','30px');
+  RESET_NUPP.style('margin-left','20px');
+ 
   LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.size(70,30);
-  LÕPETA_NUPP.style("background-color",color(80,139,195,255));
-  LÕPETA_NUPP.style("color",color(255,255,255,255));
-  LÕPETA_NUPP.position(4*width/5+20, (height-200));
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  //LÕPETA_NUPP.position(width/2+140,height+30);
+  LÕPETA_NUPP.style('margin-top','30px');
+  LÕPETA_NUPP.style('margin-left','80px');
+
+  KONTROLL_NUPP.position(4*width/5-250, (height-teksti_kasti_kõrgus)+0);
+  RESET_NUPP.position(4*width/5-50,(height-teksti_kasti_kõrgus)+0);
+  LÕPETA_NUPP.position(4*width/5-75, (height-200));
   
   // ###################### VÄÄRTUSTETABELI SISENDID #################################
   INPUT_X1=createInput();
   INPUT_X1.size(50,17)
-  INPUT_X1.position(71,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X1.position(71,(height-teksti_kasti_kõrgus)+131);
   
   
   INPUT_X2=createInput();
   INPUT_X2.size(59,17)
-  INPUT_X2.position(132,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X2.position(132,(height-teksti_kasti_kõrgus)+131);
   
   
   INPUT_X3=createInput();
   INPUT_X3.size(59,17)
-  INPUT_X3.position(202,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X3.position(202,(height-teksti_kasti_kõrgus)+131);
   
   INPUT_X4=createInput();
   INPUT_X4.size(58,17)
-  INPUT_X4.position(272,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X4.position(272,(height-teksti_kasti_kõrgus)+131);
   
   INPUT_X5=createInput();
   INPUT_X5.size(58,17)
-  INPUT_X5.position(342,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X5.position(342,(height-teksti_kasti_kõrgus)+131);
   
   INPUT_X6=createInput();
   INPUT_X6.size(58,17)
-  INPUT_X6.position(412,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X6.position(412,(height-teksti_kasti_kõrgus)+131);
   
   INPUT_X7=createInput();
   INPUT_X7.size(58,17)
-  INPUT_X7.position(482,(height-teksti_kasti_kõrgus)+111);
+  INPUT_X7.position(482,(height-teksti_kasti_kõrgus)+131);
   
   
   INPUT_Y1=createInput();
   INPUT_Y1.size(50,17)
-  INPUT_Y1.position(71,(height-teksti_kasti_kõrgus)+136);
+  INPUT_Y1.position(71,(height-teksti_kasti_kõrgus)+156);
   
   INPUT_Y2=createInput();
   INPUT_Y2.size(59,17)
-  INPUT_Y2.position(132,(height-teksti_kasti_kõrgus)+136);
+  INPUT_Y2.position(132,(height-teksti_kasti_kõrgus)+156);
   
   INPUT_Y3=createInput();
   INPUT_Y3.size(59,17)
-  INPUT_Y3.position(202,(height-teksti_kasti_kõrgus)+136);
+  INPUT_Y3.position(202,(height-teksti_kasti_kõrgus)+156);
   
   INPUT_Y4=createInput();
   INPUT_Y4.size(59,17)
-  INPUT_Y4.position(272,(height-teksti_kasti_kõrgus)+136);
+  INPUT_Y4.position(272,(height-teksti_kasti_kõrgus)+156);
   
   INPUT_Y5=createInput();
   INPUT_Y5.size(59,17)
-  INPUT_Y5.position(342,(height-teksti_kasti_kõrgus)+136);
+  INPUT_Y5.position(342,(height-teksti_kasti_kõrgus)+156);
   
   INPUT_Y6=createInput();
   INPUT_Y6.size(59,17)
-  INPUT_Y6.position(412,(height-teksti_kasti_kõrgus)+136); 
+  INPUT_Y6.position(412,(height-teksti_kasti_kõrgus)+156); 
   
   INPUT_Y7=createInput();
   INPUT_Y7.size(59,17)
-  INPUT_Y7.position(482,(height-teksti_kasti_kõrgus)+136);
+  INPUT_Y7.position(482,(height-teksti_kasti_kõrgus)+156);
   
   
   ülesannete_loendur=ülesannete_loendur+1;
