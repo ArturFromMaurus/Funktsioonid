@@ -5,13 +5,13 @@ var lõpetamise_tingimus=false;
 
 function setup() {
   createCanvas(650, 300);
-  background(r,g,b);
+  background(255);
   create_TEXTS();
   Reset();
 }
 
 function draw() {
-  background(r,g,b);
+  background(255);
   ASUB_NUPP.mousePressed(sobib);
   VALE_NUPP.mousePressed(ei_sobi);
   RESET_NUPP.mousePressed(Reset);
@@ -128,6 +128,7 @@ function Kontroll(){
     r=244;
     g=255;
     b=250;
+    tulemus_txt.style("color","green");
     push();
     fill(0,255,0);
     strokeWeight(5);
@@ -142,6 +143,7 @@ function Kontroll(){
     r=255;
     g=244;
     b=250;
+    tulemus_txt.style("color","red");
     ASUB_NUPP.attribute("disabled","");
     VALE_NUPP.attribute("disabled","");
   }
@@ -193,29 +195,47 @@ function Reset(){
   tulemus_txt.html("");
   Ylesanne(random([0,1]));
   ASUB_NUPP=createButton("Asub");
-  ASUB_NUPP.size(70,40);
-  ASUB_NUPP.style("background-color",color(80,139,195,255));
-  ASUB_NUPP.style("color",color(255,255,255,255));
-  ASUB_NUPP.position(width/2-250, height/2);
+  ASUB_NUPP.style('padding','10px 20px');
+  ASUB_NUPP.style('background-color','MidNightBlue');
+  ASUB_NUPP.style('color','white');
+  ASUB_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  ASUB_NUPP.style('margin-top','30px');
+  ASUB_NUPP.style('margin-left','100px');
+  ASUB_NUPP.position(width/2-350, height/2-25);
   
   VALE_NUPP=createButton("Ei asu");
-  VALE_NUPP.size(70,40);
-  VALE_NUPP.style("background-color",color(80,139,195,255));
-  VALE_NUPP.style("color",color(255,255,255,255));
-  VALE_NUPP.position(width/2-150, height/2);
+  VALE_NUPP.style('padding','10px 20px');
+  VALE_NUPP.style('background-color','MidNightBlue');
+  VALE_NUPP.style('color','white');
+  VALE_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  VALE_NUPP.style('margin-top','30px');
+  VALE_NUPP.style('margin-left','100px');
+  VALE_NUPP.position(width/2-250, height/2-25);
   
   
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.size(70,40);
-  RESET_NUPP.style("background-color",color(80,139,195,255));
-  RESET_NUPP.style("color",color(255,255,255,255));
-  RESET_NUPP.position(width/2+90, height/2);
+  RESET_NUPP.style('padding','10px 20px');
+  RESET_NUPP.style('background-color','#508bc3');
+  RESET_NUPP.style('color','white');
+  RESET_NUPP.style('border-radius','30px');
+  //RESET_NUPP.position(width/2+10,height+30);
+  RESET_NUPP.style('margin-top','30px');
+  RESET_NUPP.style('margin-left','20px');
+  RESET_NUPP.position(width/2-10, height/2-25);
   
   LÕPETA_NUPP=createButton("Lõpeta test");
-  LÕPETA_NUPP.size(70,40);
-  LÕPETA_NUPP.style("background-color",color(80,139,195,255));
-  LÕPETA_NUPP.style("color",color(255,255,255,255));
-  LÕPETA_NUPP.position(width/2+190, height/2);
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  //LÕPETA_NUPP.position(width/2+140,height+30);
+  LÕPETA_NUPP.style('margin-top','30px');
+  LÕPETA_NUPP.style('margin-left','80px');
+  LÕPETA_NUPP.position(width/2+90, height/2-25);
+  
   
   r=255
   g=255
