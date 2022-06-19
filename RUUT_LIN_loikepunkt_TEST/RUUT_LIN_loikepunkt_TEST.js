@@ -38,7 +38,7 @@ function draw() {
   clear();
   background(255);
   XYplane(jaotiste_arv, 0.25, 2); //parameetriks on [jaotiste_arv(teljel), tausta_jaotise_paksus, telje_jaotiste_paksus]
-  create_a_Point();
+  // create_a_Point();
   graafik(xmin,xmax, jaotiste_arv);
   mouse_Hover();
   
@@ -223,13 +223,13 @@ function Ylesanne(){
   LaTeX_string_full="\\begin{cases}" +LaTeX_string1 +" \\newline "+LaTeX_string2+ "\\end{cases}";
   
   katex.render(LaTeX_string_full, TeX_võrrand.elt);
-  yl_text.html("On antud funktsioonid:<br><br><br> Arvuta funktsioonide lõikepunktid ning kanna leitud tulemused lünkadesse.<br>Kui lõikepunkte on vaid 1, siis kanna selle lõikepunkti väärtused mõlemale reale.<br>Tulemused ümarda 3 kohta pärast koma.");
+  yl_text.html("On antud funktsioonid:<br><br> Arvuta funktsioonide lõikepunktid ning kanna leitud tulemused<br> lünkadesse. Kui lõikepunkte on vaid 1, siis kanna selle lõikepunkti<br> väärtused mõlemale reale.<br> Tulemused ümarda 3 kohta pärast koma.");
   yl_text2.html("Vastused:")
   
-  punkt_P=str("L_{1}( \\hspace{35px}; \\hspace{35px}     )");
+  punkt_P=str("L_{1}( \\hspace{40px}; \\hspace{40px}     )");
   katex.render(punkt_P, TeX_punkti_koord.elt);
   
-  punkt_P2=str("L_{2}( \\hspace{35px}; \\hspace{35px}     )");
+  punkt_P2=str("L_{2}( \\hspace{40px}; \\hspace{40px}     )");
   katex.render(punkt_P2, TeX_punkti_koord2.elt);
 }
 
@@ -237,22 +237,47 @@ function Ylesanne(){
 function Write_texts(){
   yl_text=createP("");
   yl_text.position(35,(height-teksti_kasti_kõrgus)+25);
+  yl_text.style("font-size", "16px")
+  yl_text.style("line-height", "140%")
+  yl_text.style("font-family",'"Roboto", sans-serif')
   
   yl_text2=createP("");
-  yl_text2.position(35,(height-teksti_kasti_kõrgus)+190);
-
-  result_text=createP("");
-  result_text.position(175,(height-teksti_kasti_kõrgus)+164);
+  yl_text2.position(35,(height-teksti_kasti_kõrgus)+210);
+  yl_text2.style("font-size", "16px")
+  yl_text2.style("line-height", "140%")
+  yl_text2.style("font-family",'"Roboto", sans-serif')
   
-  TeX_võrrand=createP("");
-  TeX_võrrand.style("font-size","18px");
-  TeX_võrrand.position(200,(height-303));
+  result_text=createP("");
+  result_text.position(160,(height-teksti_kasti_kõrgus)+180);
+  result_text.style("font-size", "16px")
+  result_text.style("line-height", "140%")
+  result_text.style("font-family",'"Roboto", sans-serif')
+  
+ TeX_võrrand=createP("");
+  TeX_võrrand.style("font-size","16px");
+  TeX_võrrand.position(width/2-50,(height-295));
+  TeX_võrrand.style("line-height", "140%")
+  TeX_võrrand.style("font-family",'"Roboto", sans-serif')
+  
   
   TeX_punkti_koord=createP("");
-  TeX_punkti_koord.position(105, (height-teksti_kasti_kõrgus)+188);
+  TeX_punkti_koord.position(111, (height-teksti_kasti_kõrgus)+210);
+  TeX_punkti_koord.style("font-size", "16px")
+  TeX_punkti_koord.style("line-height", "140%")
+  TeX_punkti_koord.style("font-family",'"Roboto", sans-serif')
+  
+TeX_võrrand=createP("");
+  TeX_võrrand.style("font-size","16px");
+  TeX_võrrand.position(width/2-50,(height-295));
+  TeX_võrrand.style("line-height", "140%")
+  TeX_võrrand.style("font-family",'"Roboto", sans-serif')
+  
   
   TeX_punkti_koord2=createP("");
-  TeX_punkti_koord2.position(105, (height-teksti_kasti_kõrgus)+228);
+  TeX_punkti_koord2.position(111, (height-teksti_kasti_kõrgus)+258);
+  TeX_punkti_koord2.style("font-size", "16px")
+  TeX_punkti_koord2.style("line-height", "140%")
+  TeX_punkti_koord2.style("font-family",'"Roboto", sans-serif')
   
 }
 
@@ -358,43 +383,71 @@ function Reset(){
   TeX_punkti_koord2.html("");
   Ylesanne();
   
+   
   KONTROLL_NUPP=createButton("Kontrolli");
-  KONTROLL_NUPP.size(70,40);
-  KONTROLL_NUPP.style("background-color",color(80,139,195,255));
-  KONTROLL_NUPP.style("color",color(255,255,255,255));
-  KONTROLL_NUPP.position(4*width/5-100, (height-teksti_kasti_kõrgus)+160);
+  KONTROLL_NUPP.style('padding','10px 20px');
+  KONTROLL_NUPP.style('background-color','MidNightBlue');
+  KONTROLL_NUPP.style('color','white');
+  KONTROLL_NUPP.style('border-radius','30px');
+  //KONTROLL_NUPP.position(width/2-80,height+30);
+  KONTROLL_NUPP.style('margin-top','30px');
+  KONTROLL_NUPP.style('margin-left','100px');
+  KONTROLL_NUPP.position(4*width/5-180, (height-teksti_kasti_kõrgus)+130);
   KONTROLL_NUPP.attribute("enabled","");
   
-  
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.size(70,40);
-  RESET_NUPP.style("background-color",color(80,139,195,255));
-  RESET_NUPP.style("color",color(255,255,255,255));
-  RESET_NUPP.position(4*width/5+10,(height-teksti_kasti_kõrgus)+160);
+  RESET_NUPP.style('padding','10px 20px');
+  RESET_NUPP.style('background-color','#508bc3');
+  RESET_NUPP.style('color','white');
+  RESET_NUPP.style('border-radius','30px');
+  //RESET_NUPP.position(width/2+10,height+30);
+  RESET_NUPP.style('margin-top','30px');
+  RESET_NUPP.style('margin-left','20px');
+  RESET_NUPP.position(4*width/5-100,(height-teksti_kasti_kõrgus)+175);
   
   LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.size(70,30);
-  LÕPETA_NUPP.style("background-color",color(80,139,195,255));
-  LÕPETA_NUPP.style("color",color(255,255,255,255));
-  LÕPETA_NUPP.position(4*width/5+10, (height-teksti_kasti_kõrgus)+220);
-  
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  //LÕPETA_NUPP.position(width/2+140,height+30);
+  LÕPETA_NUPP.style('margin-top','30px');
+  LÕPETA_NUPP.style('margin-left','80px');
+  LÕPETA_NUPP.position(4*width/5-155, (height-teksti_kasti_kõrgus)+220);
   
   // ###################### SISENDID #################################
   INPUT_X=createInput();
   INPUT_X.size(55,17);
-  INPUT_X.position(135,(height-teksti_kasti_kõrgus)+205);
+  INPUT_X.position(145,(height-teksti_kasti_kõrgus)+226);
+  INPUT_X.style("font-size", "16px")
+  INPUT_X.style("line-height", "140%")
+  INPUT_X.style("font-family",'"Roboto", sans-serif')
+  
   
   INPUT_Y=createInput();
   INPUT_Y.size(55,17);
-  INPUT_Y.position(210,(height-teksti_kasti_kõrgus)+205);
+  INPUT_Y.position(230,(height-teksti_kasti_kõrgus)+226);
+  INPUT_Y.style("font-size", "16px")
+  INPUT_Y.style("line-height", "140%")
+  INPUT_Y.style("font-family",'"Roboto", sans-serif')
+  
   
   INPUT_X2=createInput();
   INPUT_X2.size(55,17);
-  INPUT_X2.position(135,(height-teksti_kasti_kõrgus)+245);
+  INPUT_X2.position(145,(height-teksti_kasti_kõrgus)+275);
+
+  INPUT_X2.style("font-size", "16px")
+  INPUT_X2.style("line-height", "140%")
+  INPUT_X2.style("font-family",'"Roboto", sans-serif')
   
   INPUT_Y2=createInput();
   INPUT_Y2.size(55,17);
-  INPUT_Y2.position(210,(height-teksti_kasti_kõrgus)+245);
+  INPUT_Y2.position(230,(height-teksti_kasti_kõrgus)+275);
+  INPUT_Y2.style("font-size", "16px")
+  INPUT_Y2.style("line-height", "140%")
+  INPUT_Y2.style("font-family",'"Roboto", sans-serif')
+  
   
   ülesannete_loendur=ülesannete_loendur+1;
 
