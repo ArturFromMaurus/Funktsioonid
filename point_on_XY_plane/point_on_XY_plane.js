@@ -26,7 +26,7 @@ function draw() {
 function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
   //jaotised Y teljel
   var jaotisY=0;
-  var Y_jaotise_väärtus=xmax;
+  var Y_jaotise_vaartus=xmax;
   while (jaotisY <= height) {
     strokeWeight(tausta_jaotise_paksus);
     stroke(200);
@@ -36,14 +36,14 @@ function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
     line(width/2-5, jaotisY , width/2+5, jaotisY);
     strokeWeight(0);
     stroke(1);
-    text(Y_jaotise_väärtus, width/2+10, jaotisY );
-    Y_jaotise_väärtus=Y_jaotise_väärtus-1;
+    text(Y_jaotise_vaartus, width/2+10, jaotisY );
+    Y_jaotise_vaartus=Y_jaotise_vaartus-1;
     jaotisY = jaotisY+height/jaotiste_arv;
     
   }
   //jaotised X teljel
   var jaotisX = 0;
-  var X_jaotise_väärtus=xmin;
+  var X_jaotise_vaartus=xmin;
   while (jaotisX <= width) {
     strokeWeight(tausta_jaotise_paksus);
     stroke(200);
@@ -53,8 +53,8 @@ function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
     line(jaotisX, height/2+5 , jaotisX, height/2-5);
     strokeWeight(0);
     stroke(0);
-    text(X_jaotise_väärtus, jaotisX, height/2+20);
-    X_jaotise_väärtus=X_jaotise_väärtus+1;
+    text(X_jaotise_vaartus, jaotisX, height/2+20);
+    X_jaotise_vaartus=X_jaotise_vaartus+1;
     jaotisX = jaotisX+width/jaotiste_arv;
   }
     // ----- X-Y plane -----
