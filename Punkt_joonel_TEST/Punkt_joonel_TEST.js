@@ -1,7 +1,7 @@
 var r=255,g=255,b=255;
-var ülesannete_loendur=0;
-var õige_vastus=0;
-var lõpetamise_tingimus=false;
+var ylesannete_loendur=0;
+var oige_vastus=0;
+var lopetamise_tingimus=false;
 
 function setup() {
   createCanvas(650, 300);
@@ -15,9 +15,9 @@ function draw() {
   ASUB_NUPP.mousePressed(sobib);
   VALE_NUPP.mousePressed(ei_sobi);
   RESET_NUPP.mousePressed(Reset);
-  LÕPETA_NUPP.mousePressed(Lõpp);
+  LOPETA_NUPP.mousePressed(Lopp);
   
-  if(lõpetamise_tingimus==true){
+  if(lopetamise_tingimus==true){
     
     push();
     fill(22, 56, 50);
@@ -66,7 +66,7 @@ function Ylesanne(n){
   } else {
     vabaliige_C_str=str(vabaliige_C)
   }
-  võrrand=round_2(ruutliige_A*X*X+lineaarliige_B*X+vabaliige_C);
+  vorrand=round_2(ruutliige_A*X*X+lineaarliige_B*X+vabaliige_C);
   LaTeX_str="y="+ruutliige_A_str+"x^{2}"+lineaarliige_B_str+"x"+vabaliige_C_str;
   }
   
@@ -81,7 +81,7 @@ function Ylesanne(n){
     vabaliige_C_str=str(vabaliige_C)
   }
   LaTeX_str="y="+lineaarliige_B_str+"x"+vabaliige_C_str;
-  võrrand=lineaarliige_B*X+vabaliige_C;
+  vorrand=lineaarliige_B*X+vabaliige_C;
   }
   
 // KOLMAS MUDEL
@@ -104,26 +104,26 @@ function Ylesanne(n){
 //     nimetaja_str=str(nimetaja);
 //     lugeja_str=str(lugeja);
 //     LaTeX_str="y=\\dfrac{"+lugeja_str+"}{"+nimetaja_str+"x}";
-//     võrrand=lugeja/(nimetaja*X);
+//     vorrand=lugeja/(nimetaja*X);
 //   }
 //   if (nimetaja==0 || X==0) {
 //     LaTeX_str="y=\\dfrac{"+lugeja_str+"}{"+nimetaja_str+"x}";
 //   }
 // }
   
-  punkt_õige=[X, round_2(võrrand)];
-  punkt_vale=[X, round_2(võrrand+random(1,10))];
-  kaks_punkti=[punkt_õige, punkt_vale];
+  punkt_oige=[X, round_2(vorrand)];
+  punkt_vale=[X, round_2(vorrand+random(1,10))];
+  kaks_punkti=[punkt_oige, punkt_vale];
   
   valik=random(kaks_punkti);
 
-  katex.render( LaTeX_str, LaTeX_võrrand.elt);
+  katex.render( LaTeX_str, LaTeX_vorrand.elt);
   
-  ül_text_2.html("Kontrolli, kas punkt P("+valik[0]+", "+valik[1]+") asub funktsiooniga määratud<br>joonel? Vajadusel ümarda vastused 2 kohta pärast koma.");
+  yl_text_2.html("Kontrolli, kas punkt P("+valik[0]+", "+valik[1]+") asub funktsiooniga määratud<br>joonel? Vajadusel ümarda vastused 2 kohta pärast koma.");
 }
 
 function Kontroll(){
-  if ((valik[1]==võrrand)==arvamus ){
+  if ((valik[1]==vorrand)==arvamus ){
     tulemus_txt.html("Õige!");
     r=244;
     g=255;
@@ -134,7 +134,7 @@ function Kontroll(){
     strokeWeight(5);
     line(width/2-120,height/2,width/2-120+50,height/2);
     pop();
-    õige_vastus=õige_vastus+1;
+    oige_vastus=oige_vastus+1;
     ASUB_NUPP.attribute("disabled","");
     VALE_NUPP.attribute("disabled","");
     
@@ -153,19 +153,19 @@ function Kontroll(){
 function create_TEXTS(){
   p1="...";
   p2="...";
-  ül_text_1=createP("On antud järgmine funktsioon: ");
-  ül_text_1.position(50,20);
-  ül_text_1.style("font-size","20px");
+  yl_text_1=createP("On antud järgmine funktsioon: ");
+  yl_text_1.position(50,20);
+  yl_text_1.style("font-size","20px");
   
-  LaTeX_võrrand=createP("");
-  LaTeX_võrrand.position(350,15);
-  LaTeX_võrrand.style("font-size","20px");
-  LaTeX_võrrand.style("line-height","140%")
+  LaTeX_vorrand=createP("");
+  LaTeX_vorrand.position(350,15);
+  LaTeX_vorrand.style("font-size","20px");
+  LaTeX_vorrand.style("line-height","140%")
   
-  ül_text_2=createP("Kontrolli, kas punkt P(,) asub funktsiooniga määratud joonel<br>?");
-  ül_text_2.position(50,60);
-  ül_text_2.style("font-size","20px");
-  ül_text_2.style("line-height","140%")
+  yl_text_2=createP("Kontrolli, kas punkt P(,) asub funktsiooniga määratud joonel<br>?");
+  yl_text_2.position(50,60);
+  yl_text_2.style("font-size","20px");
+  yl_text_2.style("line-height","140%")
   
   tulemus_txt=createP("");
   tulemus_txt.position(width/2-180,height/2+50);
@@ -181,17 +181,17 @@ function create_TEXTS(){
 function Reset(){
   
   
-  if(ülesannete_loendur>0){
+  if(ylesannete_loendur>0){
     
     VALE_NUPP.remove();
     ASUB_NUPP.remove();
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     
   }
   
-  LaTeX_võrrand.html("");
-  ül_text_2.html("");
+  LaTeX_vorrand.html("");
+  yl_text_2.html("");
   tulemus_txt.html("");
   Ylesanne(random([0,1]));
   ASUB_NUPP=createButton("Asub");
@@ -225,22 +225,22 @@ function Reset(){
   RESET_NUPP.style('margin-left','20px');
   RESET_NUPP.position(width/2-10, height/2-25);
   
-  LÕPETA_NUPP=createButton("Lõpeta test");
-  LÕPETA_NUPP.style('padding','10px 20px');
-  LÕPETA_NUPP.style('background-color','LightSteelBlue');
-  LÕPETA_NUPP.style('color','black');
-  LÕPETA_NUPP.style('font-weight','bold');
-  LÕPETA_NUPP.style('border-radius','30px');
-  //LÕPETA_NUPP.position(width/2+140,height+30);
-  LÕPETA_NUPP.style('margin-top','30px');
-  LÕPETA_NUPP.style('margin-left','80px');
-  LÕPETA_NUPP.position(width/2+90, height/2-25);
+  LOPETA_NUPP=createButton("Lõpeta test");
+  LOPETA_NUPP.style('padding','10px 20px');
+  LOPETA_NUPP.style('background-color','LightSteelBlue');
+  LOPETA_NUPP.style('color','black');
+  LOPETA_NUPP.style('font-weight','bold');
+  LOPETA_NUPP.style('border-radius','30px');
+  //LOPETA_NUPP.position(width/2+140,height+30);
+  LOPETA_NUPP.style('margin-top','30px');
+  LOPETA_NUPP.style('margin-left','80px');
+  LOPETA_NUPP.position(width/2+90, height/2-25);
   
   
   r=255
   g=255
   b=255;
-  ülesannete_loendur=ülesannete_loendur+1;
+  ylesannete_loendur=ylesannete_loendur+1;
 
   
 }
@@ -256,35 +256,35 @@ function ei_sobi(){
 }
 
 
-function Lõpp(){
+function Lopp(){
 
   
   ASUB_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
-  LÕPETA_NUPP.attribute("disabled","");
+  LOPETA_NUPP.attribute("disabled","");
   VALE_NUPP.attribute("disabled","");
   
   
-  ül_text_1.remove();
-  ül_text_2.remove();
-  LaTeX_võrrand.remove();
+  yl_text_1.remove();
+  yl_text_2.remove();
+  LaTeX_vorrand.remove();
   tulemus_txt.remove();
   staatus_txt.remove();
   
   RESET_NUPP.remove();
-  LÕPETA_NUPP.remove();
+  LOPETA_NUPP.remove();
   ASUB_NUPP.remove();
   VALE_NUPP.remove();
     
   
   
-  Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
+  Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
   Tulemus.style("line-height","140%");
   
-  lõpetamise_tingimus=true;
+  lopetamise_tingimus=true;
 }
   
 
