@@ -1,6 +1,6 @@
-var õige_vastus=0;
-var ülesannete_loendur=0;
-lõpetamise_tingimus=false;
+var oige_vastus=0;
+var ylesannete_loendur=0;
+var lopetamise_tingimus=false;
 
 function setup() {
   let c= createCanvas(700, 200);
@@ -61,8 +61,8 @@ function draw() {
   KONTROLL_NUPP.mousePressed(Kontroll);
   RESET_NUPP.mousePressed(Reset);
   
-  LÕPETA_NUPP.mousePressed(Lõpp);
-  if(lõpetamise_tingimus==true){
+  LOPETA_NUPP.mousePressed(Lopp);
+  if(lopetamise_tingimus==true){
     
     push();
     fill(22, 56, 50);
@@ -118,7 +118,7 @@ function Kontroll() {
   if (VASTUS.value()==(abs(yl_number_1-yl_number_2)) ){
     result_text.html("Õige!");
     result_text.style("color","green");
-    õige_vastus=õige_vastus+1;
+    oige_vastus=oige_vastus+1;
     KONTROLL_NUPP.attribute("disabled","");
   } else {
     result_text.html("Vastus ei sobi!");
@@ -127,10 +127,10 @@ function Kontroll() {
 }
 
 function Reset(){
-    if(ülesannete_loendur>0){
+    if(ylesannete_loendur>0){
     
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove()
     VASTUS.remove();
   }
@@ -157,20 +157,20 @@ function Reset(){
   RESET_NUPP.style('margin-top','30px');
   RESET_NUPP.style('margin-left','20px');
  
-  LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.style('padding','10px 20px');
-  LÕPETA_NUPP.style('background-color','LightSteelBlue');
-  LÕPETA_NUPP.style('color','black');
-  LÕPETA_NUPP.style('font-weight','bold');
-  LÕPETA_NUPP.style('border-radius','30px');
-  //LÕPETA_NUPP.position(width/2+140,height+30);
-  LÕPETA_NUPP.style('margin-top','30px');
-  LÕPETA_NUPP.style('margin-left','80px');
+  LOPETA_NUPP=createButton("Lõpeta");
+  LOPETA_NUPP.style('padding','10px 20px');
+  LOPETA_NUPP.style('background-color','LightSteelBlue');
+  LOPETA_NUPP.style('color','black');
+  LOPETA_NUPP.style('font-weight','bold');
+  LOPETA_NUPP.style('border-radius','30px');
+  //LOPETA_NUPP.position(width/2+140,height+30);
+  LOPETA_NUPP.style('margin-top','30px');
+  LOPETA_NUPP.style('margin-left','80px');
   
   VASTUS = createInput();
   VASTUS.position(200,170);
   
-  ülesannete_loendur=ülesannete_loendur+1;
+  ylesannete_loendur=ylesannete_loendur+1;
 }
 
 function create_TEXT(){
@@ -200,15 +200,15 @@ function keyPressed() {
 
 
 
-function Lõpp(){
+function Lopp(){
 
   
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
-  LÕPETA_NUPP.attribute("disabled","");
+  LOPETA_NUPP.attribute("disabled","");
 
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove();
     yl_text.remove();
     result_text.remove();
@@ -216,14 +216,14 @@ function Lõpp(){
     vastus_text.remove();
 
   
-  Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
+  Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
   Tulemus.style("line-height","140%");
   
   
-  lõpetamise_tingimus=true;
+  lopetamise_tingimus=true;
 }
 
 
