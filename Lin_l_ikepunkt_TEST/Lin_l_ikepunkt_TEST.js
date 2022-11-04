@@ -5,10 +5,10 @@ var Y2=[];
 
 
 var x_koord=0.0, y_koord=0.0;
-var ülesannete_loendur=0;
-var õige_vastus=0;
-var lõpetamise_tingimus=false;
-var teksti_kasti_kõrgus=300;
+var ylesannete_loendur=0;
+var oige_vastus=0;
+var lopetamise_tingimus=false;
+var teksti_kasti_korgus=300;
 var punkti_raadius=5;
 
 var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
@@ -36,9 +36,9 @@ function draw() {
   
   KONTROLL_NUPP.mousePressed(Kontroll);
   RESET_NUPP.mousePressed(Reset);
-  LÕPETA_NUPP.mousePressed(Lõpp);
+  LOPETA_NUPP.mousePressed(Lopp);
   
-  if(lõpetamise_tingimus==true){
+  if(lopetamise_tingimus==true){
     
     push();
     fill(22, 56, 50);
@@ -72,7 +72,7 @@ function draw() {
 function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
   //jaotised Y teljel
   var jaotisY=0;
-  var Y_jaotise_väärtus=xmax;
+  var Y_jaotise_vaartus=xmax;
   while (jaotisY <= height-300) {
     strokeWeight(tausta_jaotise_paksus);
     stroke(200);
@@ -82,47 +82,47 @@ function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
     line(width/2-5, jaotisY , width/2+5, jaotisY);
     strokeWeight(0);
     stroke(1);
-    text(Y_jaotise_väärtus, width/2+10, jaotisY );
-    Y_jaotise_väärtus=Y_jaotise_väärtus-1;
-    jaotisY = jaotisY+(height-teksti_kasti_kõrgus)/jaotiste_arv;
+    text(Y_jaotise_vaartus, width/2+10, jaotisY );
+    Y_jaotise_vaartus=Y_jaotise_vaartus-1;
+    jaotisY = jaotisY+(height-teksti_kasti_korgus)/jaotiste_arv;
     
   }
   //jaotised X teljel
   var jaotisX = 0;
-  var X_jaotise_väärtus=xmin;
+  var X_jaotise_vaartus=xmin;
   while (jaotisX <= width) {
     strokeWeight(tausta_jaotise_paksus);
     stroke(200);
-    line(jaotisX, (height-teksti_kasti_kõrgus)*0 , jaotisX, (height-teksti_kasti_kõrgus));
+    line(jaotisX, (height-teksti_kasti_korgus)*0 , jaotisX, (height-teksti_kasti_korgus));
     strokeWeight(telje_jaotiste_paksus);
     stroke(0);
-    line(jaotisX, (height-teksti_kasti_kõrgus)/2+5 , jaotisX, (height-teksti_kasti_kõrgus)/2-5);
+    line(jaotisX, (height-teksti_kasti_korgus)/2+5 , jaotisX, (height-teksti_kasti_korgus)/2-5);
     strokeWeight(0);
     stroke(0);
-    text(X_jaotise_väärtus, jaotisX, (height-teksti_kasti_kõrgus)/2+20);
-    X_jaotise_väärtus=X_jaotise_väärtus+1;
+    text(X_jaotise_vaartus, jaotisX, (height-teksti_kasti_korgus)/2+20);
+    X_jaotise_vaartus=X_jaotise_vaartus+1;
     jaotisX = jaotisX+width/jaotiste_arv;
   }
     // ----- X-Y plane -----
   strokeWeight(telje_jaotiste_paksus);
   stroke(0);
     //Y-axis
-  line(width/2, (height-teksti_kasti_kõrgus)*0 , width/2 , (height-teksti_kasti_kõrgus));
+  line(width/2, (height-teksti_kasti_korgus)*0 , width/2 , (height-teksti_kasti_korgus));
     //arrow
   line(width/2-5, 0+15, width/2, 0);
   line(width/2+5, 0+15, width/2, 0);
     //X-axis
-  line(width*0, (height-teksti_kasti_kõrgus)/2, width, (height-teksti_kasti_kõrgus)/2);
+  line(width*0, (height-teksti_kasti_korgus)/2, width, (height-teksti_kasti_korgus)/2);
     //arrow
-  line(width-15,(height-teksti_kasti_kõrgus)/2-5,width, (height-teksti_kasti_kõrgus)/2);
-  line(width-15,(height-teksti_kasti_kõrgus)/2+5,width, (height-teksti_kasti_kõrgus)/2); 
+  line(width-15,(height-teksti_kasti_korgus)/2-5,width, (height-teksti_kasti_korgus)/2);
+  line(width-15,(height-teksti_kasti_korgus)/2+5,width, (height-teksti_kasti_korgus)/2); 
 }
 
 points_on_plot=0;
 
 function mouseClicked() {
   
-  if (mouseX>0 && mouseX<width && mouseY>0 && mouseY<(height-teksti_kasti_kõrgus)){
+  if (mouseX>0 && mouseX<width && mouseY>0 && mouseY<(height-teksti_kasti_korgus)){
     x_koord=mouseX;
     y_koord=mouseY;
   }
@@ -176,7 +176,7 @@ function Ylesanne(){
   
   LaTeX_string_full="\\begin{cases}" +LaTeX_string1+" \\newline "+LaTeX_string2+ "\\end{cases}";
   
-  katex.render(LaTeX_string_full, TeX_võrrand.elt);
+  katex.render(LaTeX_string_full, TeX_vorrand.elt);
   yl_text.html("On antud funktsioonid:<br><br><br> Kanna funktsioonide lõikepunkti koordinaadid lünkadesse,<br>tulemused ümarda 3 kohta pärast koma, ning kanna leitud<br> punkt graafikule ligikaudselt.");
   yl_text2.html("Vastus:")
   
@@ -187,40 +187,40 @@ function Ylesanne(){
 
 function Write_texts(){
   yl_text=createP("");
-  yl_text.position(35,(height-teksti_kasti_kõrgus)+25);
+  yl_text.position(35,(height-teksti_kasti_korgus)+25);
   yl_text.style("font-size", "16px")
   yl_text.style("line-height", "140%")
   yl_text.style("font-family",'"Roboto", sans-serif')
   
   yl_text2=createP("");
-  yl_text2.position(35,(height-teksti_kasti_kõrgus)+210);
+  yl_text2.position(35,(height-teksti_kasti_korgus)+210);
   yl_text2.style("font-size", "16px")
   yl_text2.style("line-height", "140%")
   yl_text2.style("font-family",'"Roboto", sans-serif')
   
   result_text=createP("");
-  result_text.position(160,(height-teksti_kasti_kõrgus)+180);
+  result_text.position(160,(height-teksti_kasti_korgus)+180);
   result_text.style("font-size", "16px")
   result_text.style("line-height", "140%")
   result_text.style("font-family",'"Roboto", sans-serif')
   
   
   punkti_result=createP("");
-  punkti_result.position(35,(height-teksti_kasti_kõrgus)+240 );
+  punkti_result.position(35,(height-teksti_kasti_korgus)+240 );
   punkti_result.style("font-size", "16px")
   punkti_result.style("line-height", "140%")
   punkti_result.style("font-family",'"Roboto", sans-serif')
   
   
-  TeX_võrrand=createP("");
-  TeX_võrrand.style("font-size","16px");
-  TeX_võrrand.position(width/2-50,(height-295));
-  TeX_võrrand.style("line-height", "140%")
-  TeX_võrrand.style("font-family",'"Roboto", sans-serif')
+  TeX_vorrand=createP("");
+  TeX_vorrand.style("font-size","16px");
+  TeX_vorrand.position(width/2-50,(height-295));
+  TeX_vorrand.style("line-height", "140%")
+  TeX_vorrand.style("font-family",'"Roboto", sans-serif')
   
   
   TeX_punkti_koord=createP("");
-  TeX_punkti_koord.position(91, (height-teksti_kasti_kõrgus)+210);
+  TeX_punkti_koord.position(91, (height-teksti_kasti_korgus)+210);
   TeX_punkti_koord.style("font-size", "16px")
   TeX_punkti_koord.style("line-height", "140%")
   TeX_punkti_koord.style("font-family",'"Roboto", sans-serif')
@@ -234,24 +234,24 @@ function Kontroll(){
   
   sisend_x=round_3(INPUT_X.value());
   sisend_y=round_1(INPUT_Y.value());
-  võrrandi_VP=round_3(tous_K1*sisend_x+vabaliige_B1);
-  võrrandi_PP=round_3(tous_K2*sisend_x+vabaliige_B2);
-  võrrandi_PP=round_2(võrrandi_PP);
-  võrrandi_VP=round_2(võrrandi_VP);
-  võrrandi_VP=round_1(võrrandi_VP);
-  võrrandi_PP=round_1(võrrandi_PP);
+  vorrandi_VP=round_3(tous_K1*sisend_x+vabaliige_B1);
+  vorrandi_PP=round_3(tous_K2*sisend_x+vabaliige_B2);
+  vorrandi_PP=round_2(vorrandi_PP);
+  vorrandi_VP=round_2(vorrandi_VP);
+  vorrandi_VP=round_1(vorrandi_VP);
+  vorrandi_PP=round_1(vorrandi_PP);
   
-  //console.log(sisend_x,sisend_y,võrrandi_VP, võrrandi_PP);
+  //console.log(sisend_x,sisend_y,vorrandi_VP, vorrandi_PP);
   
   
   
-  if (võrrandi_VP==võrrandi_PP){
+  if (vorrandi_VP==vorrandi_PP){
     x_id_korras=true;
   } else {
     x_id_korras=false;
   }
   
-  if (võrrandi_VP==sisend_y && võrrandi_PP==sisend_y) {
+  if (vorrandi_VP==sisend_y && vorrandi_PP==sisend_y) {
     y_id_korras=true;
   } else {
     y_id_korras=false;
@@ -287,7 +287,7 @@ function Kontroll(){
   
   if (y_id_korras==true && x_id_korras==true && punkt_on_korras==true)
     {
-      õige_vastus=õige_vastus+1;
+      oige_vastus=oige_vastus+1;
       KONTROLL_NUPP.attribute("disabled","");
     }
   
@@ -296,12 +296,12 @@ function Kontroll(){
 
 function Reset(){
   
-  if(ülesannete_loendur>0){
+  if(ylesannete_loendur>0){
     
     INPUT_X.remove();
     INPUT_Y.remove();
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove()
     
   }
@@ -314,7 +314,7 @@ function Reset(){
   punkti_result.html("");
   yl_text.html("");
   yl_text2.html("");
-  TeX_võrrand.html("");
+  TeX_vorrand.html("");
   Ylesanne();
   
   KONTROLL_NUPP=createButton("Kontrolli");
@@ -325,7 +325,7 @@ function Reset(){
   //KONTROLL_NUPP.position(width/2-80,height+30);
   KONTROLL_NUPP.style('margin-top','30px');
   KONTROLL_NUPP.style('margin-left','100px');
-  KONTROLL_NUPP.position(4*width/5-120, (height-teksti_kasti_kõrgus)+130);
+  KONTROLL_NUPP.position(4*width/5-120, (height-teksti_kasti_korgus)+130);
   KONTROLL_NUPP.attribute("enabled","");
   
   RESET_NUPP=createButton("Uus ülesanne");
@@ -336,36 +336,36 @@ function Reset(){
   //RESET_NUPP.position(width/2+10,height+30);
   RESET_NUPP.style('margin-top','30px');
   RESET_NUPP.style('margin-left','20px');
-  RESET_NUPP.position(4*width/5-70,(height-teksti_kasti_kõrgus)+175);
+  RESET_NUPP.position(4*width/5-70,(height-teksti_kasti_korgus)+175);
   
-  LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.style('padding','10px 20px');
-  LÕPETA_NUPP.style('background-color','LightSteelBlue');
-  LÕPETA_NUPP.style('color','black');
-  LÕPETA_NUPP.style('font-weight','bold');
-  LÕPETA_NUPP.style('border-radius','30px');
-  //LÕPETA_NUPP.position(width/2+140,height+30);
-  LÕPETA_NUPP.style('margin-top','30px');
-  LÕPETA_NUPP.style('margin-left','80px');
-  LÕPETA_NUPP.position(4*width/5-90, (height-teksti_kasti_kõrgus)+220);
+  LOPETA_NUPP=createButton("Lõpeta");
+  LOPETA_NUPP.style('padding','10px 20px');
+  LOPETA_NUPP.style('background-color','LightSteelBlue');
+  LOPETA_NUPP.style('color','black');
+  LOPETA_NUPP.style('font-weight','bold');
+  LOPETA_NUPP.style('border-radius','30px');
+  //LOPETA_NUPP.position(width/2+140,height+30);
+  LOPETA_NUPP.style('margin-top','30px');
+  LOPETA_NUPP.style('margin-left','80px');
+  LOPETA_NUPP.position(4*width/5-90, (height-teksti_kasti_korgus)+220);
   
   
   // ###################### SISENDID #################################
   INPUT_X=createInput();
   INPUT_X.size(55,17);
-  INPUT_X.position(115,(height-teksti_kasti_kõrgus)+226);
+  INPUT_X.position(115,(height-teksti_kasti_korgus)+226);
   INPUT_X.style("font-size", "16px")
   INPUT_X.style("line-height", "140%")
   INPUT_X.style("font-family",'"Roboto", sans-serif')
   
   INPUT_Y=createInput();
   INPUT_Y.size(55,17);
-  INPUT_Y.position(190,(height-teksti_kasti_kõrgus)+226);
+  INPUT_Y.position(190,(height-teksti_kasti_korgus)+226);
   INPUT_Y.style("font-size", "16px")
   INPUT_Y.style("line-height", "140%")
   INPUT_Y.style("font-family",'"Roboto", sans-serif')
   
-  ülesannete_loendur=ülesannete_loendur+1;
+  ylesannete_loendur=ylesannete_loendur+1;
 
 }
 
@@ -383,30 +383,30 @@ function graafik(xmin,xmax, jaotiste_arv) {
    }
   
   for (var k=0; k<=X.length; k=k+1) {
-    if (X[k]*(width/jaotiste_arv)+width/2 >= 0 && X[k]*(width/jaotiste_arv)+width/2 <= width && Y[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2 >=0 && Y[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2 <= (height-teksti_kasti_kõrgus)  ){
+    if (X[k]*(width/jaotiste_arv)+width/2 >= 0 && X[k]*(width/jaotiste_arv)+width/2 <= width && Y[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2 >=0 && Y[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2 <= (height-teksti_kasti_korgus)  ){
     push();
     fill(255,0,255);
-    circle(X[k]*(width/jaotiste_arv)+width/2 , Y[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2,0);
+    circle(X[k]*(width/jaotiste_arv)+width/2 , Y[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2,0);
    pop();
       if (k>=1) {
       stroke(0, 140, 205);
       strokeWeight(2);
-      line(X[k-1]*(width/jaotiste_arv)+width/2, Y[k-1]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2, X[k]*(width/jaotiste_arv)+width/2, Y[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2);
+      line(X[k-1]*(width/jaotiste_arv)+width/2, Y[k-1]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2, X[k]*(width/jaotiste_arv)+width/2, Y[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2);
   }
     
   } 
     }
       
   for (var k=0; k<=X2.length; k=k+1) {
-    if (X2[k]*(width/jaotiste_arv)+width/2 >= 0 && X2[k]*(width/jaotiste_arv)+width/2 <= width && Y2[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2 >=0 && Y2[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2 <= (height-teksti_kasti_kõrgus)  ){
+    if (X2[k]*(width/jaotiste_arv)+width/2 >= 0 && X2[k]*(width/jaotiste_arv)+width/2 <= width && Y2[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2 >=0 && Y2[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2 <= (height-teksti_kasti_korgus)  ){
     push();
     fill(255,0,255);
-    circle(X2[k]*(width/jaotiste_arv)+width/2 , Y2[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2,0);
+    circle(X2[k]*(width/jaotiste_arv)+width/2 , Y2[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2,0);
    pop();
       if (k>=1) {
       stroke(0, 140, 205);
       strokeWeight(2);
-      line(X2[k-1]*(width/jaotiste_arv)+width/2, Y2[k-1]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2, X2[k]*(width/jaotiste_arv)+width/2, Y2[k]*((height-teksti_kasti_kõrgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_kõrgus)/2);
+      line(X2[k-1]*(width/jaotiste_arv)+width/2, Y2[k-1]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2, X2[k]*(width/jaotiste_arv)+width/2, Y2[k]*((height-teksti_kasti_korgus)/jaotiste_arv)*(-1)+(height-teksti_kasti_korgus)/2);
   }
     
   } 
@@ -429,28 +429,28 @@ function mouse_Hover(){
   pop();
     
     
-       if ((mouseX<=(width/2)) && (mouseY<=((height-teksti_kasti_kõrgus)/2))){
+       if ((mouseX<=(width/2)) && (mouseY<=((height-teksti_kasti_korgus)/2))){
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX, mouseY, 55, 55, 15);
     fill(0);
     text("X: "+ hover_X, mouseX+11.5, mouseY+21);
     text("Y: "+hover_Y , mouseX+11.5, mouseY+41);
-  } else if ((mouseX<=(width/2)) && (mouseY>=((height-teksti_kasti_kõrgus)/2))) {
+  } else if ((mouseX<=(width/2)) && (mouseY>=((height-teksti_kasti_korgus)/2))) {
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX, mouseY-60, 55, 55, 15);
     fill(0);
     text("X: "+hover_X, mouseX+11.5, mouseY-39);
     text("Y: "+hover_Y, mouseX+11.5, mouseY-19);
-  } else if ((mouseX>=(width/2)) && (mouseY>=((height-teksti_kasti_kõrgus)/2))) {
+  } else if ((mouseX>=(width/2)) && (mouseY>=((height-teksti_kasti_korgus)/2))) {
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX-60, mouseY-60, 55, 55, 15);
     fill(0);
     text("X: "+ hover_X, mouseX-48.5,mouseY-39);
     text("Y: "+hover_Y, mouseX-48.5, mouseY-19);
-  }else if ((mouseX>=(width/2)) && (mouseY<=((height-teksti_kasti_kõrgus)/2))) {
+  }else if ((mouseX>=(width/2)) && (mouseY<=((height-teksti_kasti_korgus)/2))) {
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX-60, mouseY, 55, 55, 15);
@@ -469,35 +469,35 @@ function mouse_Hover(){
   
 }
 
-function Lõpp(){
+function Lopp(){
 
   
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
-  LÕPETA_NUPP.attribute("disabled","");
+  LOPETA_NUPP.attribute("disabled","");
   
     INPUT_X.remove();
     INPUT_Y.remove();
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove();
     yl_text.remove();
     yl_text2.remove();
     result_text.remove();
     punkti_result.remove();
-    TeX_võrrand.remove();
+    TeX_vorrand.remove();
     TeX_punkti_koord.remove();
     
   
   
-  Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
+  Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
   Tulemus.style("line-height","140%");
   
   
-  lõpetamise_tingimus=true;
+  lopetamise_tingimus=true;
 }
 
 
