@@ -1,14 +1,14 @@
 var X=[];
 var Y=[];
 var x_koord=0.0, y_koord=0.0;
-var ülesannete_loendur=0;
-var õige_vastus=0;
-var lõpetamise_tingimus=false;
+var ylesannete_loendur=0;
+var oige_vastus=0;
+var lopetamise_tingimus=false;
 var punkti_raadius=5;
 var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
 var xmax=10;  // Teisisõnu xmin + xmax absoluutväärtused peavad kokku andma jaotiste arvu. 
 var jaotiste_arv=20;
-var teksti_kasti_kõrgus=300;
+var teksti_kasti_korgus=300;
 
 function setup() {
   createCanvas(500,800);
@@ -31,9 +31,9 @@ function draw() {
   
   KONTROLL_NUPP.mousePressed(Kontroll);
   RESET_NUPP.mousePressed(Reset);
-  LÕPETA_NUPP.mousePressed(Lõpp);
+  LOPETA_NUPP.mousePressed(Lopp);
   
-  if(lõpetamise_tingimus==true){
+  if(lopetamise_tingimus==true){
     
     push();
     fill(22, 56, 50);
@@ -67,7 +67,7 @@ function draw() {
 function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
   //jaotised Y teljel
   var jaotisY=0;
-  var Y_jaotise_väärtus=xmax;
+  var Y_jaotise_vaartus=xmax;
   while (jaotisY <= height-300) {
     strokeWeight(tausta_jaotise_paksus);
     stroke(200);
@@ -77,14 +77,14 @@ function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
     line(width/2-5, jaotisY , width/2+5, jaotisY);
     strokeWeight(0);
     stroke(1);
-    text(Y_jaotise_väärtus, width/2+10, jaotisY );
-    Y_jaotise_väärtus=Y_jaotise_väärtus-1;
+    text(Y_jaotise_vaartus, width/2+10, jaotisY );
+    Y_jaotise_vaartus=Y_jaotise_vaartus-1;
     jaotisY = jaotisY+(height-300)/jaotiste_arv;
     
   }
   //jaotised X teljel
   var jaotisX = 0;
-  var X_jaotise_väärtus=xmin;
+  var X_jaotise_vaartus=xmin;
   while (jaotisX <= width) {
     strokeWeight(tausta_jaotise_paksus);
     stroke(200);
@@ -94,8 +94,8 @@ function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
     line(jaotisX, (height-300)/2+5 , jaotisX, (height-300)/2-5);
     strokeWeight(0);
     stroke(0);
-    text(X_jaotise_väärtus, jaotisX, (height-300)/2+20);
-    X_jaotise_väärtus=X_jaotise_väärtus+1;
+    text(X_jaotise_vaartus, jaotisX, (height-300)/2+20);
+    X_jaotise_vaartus=X_jaotise_vaartus+1;
     jaotisX = jaotisX+width/jaotiste_arv;
   }
     // ----- X-Y plane -----
@@ -180,7 +180,7 @@ function Ylesanne(){
   
   LaTeX_string="y="+str(tous_K)+"x"+vabaliige_B_str;
   
-  katex.render(LaTeX_string, TeX_võrrand.elt);
+  katex.render(LaTeX_string, TeX_vorrand.elt);
   yl_text.html("On antud funktsioon:<br><br> Täida väärtustetabel, ning kanna leitud punktid graafikule.");
 }
 
@@ -213,9 +213,9 @@ function Write_texts(){
   result_text.style("line-height","140%");
   result_text.style("font-family","'Roboto', sans-serif");
   
-  TeX_võrrand=createP("");
-  TeX_võrrand.style("font-size","18px");
-  TeX_võrrand.position(width/2-50,(height-303));
+  TeX_vorrand=createP("");
+  TeX_vorrand.style("font-size","18px");
+  TeX_vorrand.position(width/2-50,(height-303));
   
   p1_text=createP("");
   p1_text.position(55,(height-300)+217);
@@ -250,9 +250,9 @@ function Kontroll(){
     result_text.style("color",color(255,0,0));
   }
   else if (INPUT_X1.value() < INPUT_X2.value() ) {
-    func_Y_väärtus_1=tous_K * (INPUT_X1.value()) +vabaliige_B;
-    func_Y_väärtus_2=tous_K * (INPUT_X2.value()) +vabaliige_B;
-    if (INPUT_Y1.value() == func_Y_väärtus_1 && INPUT_Y2.value() == func_Y_väärtus_2){
+    func_Y_vaartus_1=tous_K * (INPUT_X1.value()) +vabaliige_B;
+    func_Y_vaartus_2=tous_K * (INPUT_X2.value()) +vabaliige_B;
+    if (INPUT_Y1.value() == func_Y_vaartus_1 && INPUT_Y2.value() == func_Y_vaartus_2){
         result_text.html("Väärtustetabel on ÕIGESTI arvutatud!")
         result_text.style("color",color(0,128,0));
         condition_for_finishing_table=true;
@@ -291,7 +291,7 @@ function Kontroll(){
   // ########################## KAS KOGU ÜL KORRAS? ##################################
   
   if (condition_for_finishing_point_B==true && condition_for_finishing_point_A==true && condition_for_finishing_table==true){
-    õige_vastus=õige_vastus+1;
+    oige_vastus=oige_vastus+1;
     KONTROLL_NUPP.attribute("disabled","");
   }
 }
@@ -299,14 +299,14 @@ function Kontroll(){
 
 function Reset(){
   
-  if(ülesannete_loendur>0){
+  if(ylesannete_loendur>0){
     
     INPUT_X1.remove();
     INPUT_X2.remove();
     INPUT_Y1.remove();
     INPUT_Y2.remove();
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove()
     
   }
@@ -346,20 +346,20 @@ function Reset(){
   RESET_NUPP.style('margin-top','30px');
   RESET_NUPP.style('margin-left','20px');
  
-  LÕPETA_NUPP=createButton("Lõpeta");
-  LÕPETA_NUPP.style('padding','10px 20px');
-  LÕPETA_NUPP.style('background-color','LightSteelBlue');
-  LÕPETA_NUPP.style('color','black');
-  LÕPETA_NUPP.style('font-weight','bold');
-  LÕPETA_NUPP.style('border-radius','30px');
-  //LÕPETA_NUPP.position(width/2+140,height+30);
-  LÕPETA_NUPP.style('margin-top','30px');
-  LÕPETA_NUPP.style('margin-left','80px');
+  LOPETA_NUPP=createButton("Lõpeta");
+  LOPETA_NUPP.style('padding','10px 20px');
+  LOPETA_NUPP.style('background-color','LightSteelBlue');
+  LOPETA_NUPP.style('color','black');
+  LOPETA_NUPP.style('font-weight','bold');
+  LOPETA_NUPP.style('border-radius','30px');
+  //LOPETA_NUPP.position(width/2+140,height+30);
+  LOPETA_NUPP.style('margin-top','30px');
+  LOPETA_NUPP.style('margin-left','80px');
   
   KONTROLL_NUPP.position(4*width/5-250, (height-300)+90);
   KONTROLL_NUPP.attribute("enabled","");
   RESET_NUPP.position(4*width/5-60,(height-300)+90);
-  LÕPETA_NUPP.position(4*width/5-90, (height-90));
+  LOPETA_NUPP.position(4*width/5-90, (height-90));
   
   
   // ###################### VÄÄRTUSTETABELI SISENDID #################################
@@ -380,7 +380,7 @@ function Reset(){
   INPUT_Y2.size(59,17)
   INPUT_Y2.position(132,(height-300)+136);
   
-  ülesannete_loendur=ülesannete_loendur+1;
+  ylesannete_loendur=ylesannete_loendur+1;
 
 }
 
@@ -424,28 +424,28 @@ function mouse_Hover(){
   circle(mouseX, mouseY, punkti_raadius);
   pop();
     
-       if ((mouseX<=(width/2)) && (mouseY<=((height-teksti_kasti_kõrgus)/2))){
+       if ((mouseX<=(width/2)) && (mouseY<=((height-teksti_kasti_korgus)/2))){
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX, mouseY, 55, 55, 15);
     fill(0);
     text("X: "+ hover_X, mouseX+11.5, mouseY+21);
     text("Y: "+hover_Y , mouseX+11.5, mouseY+41);
-  } else if ((mouseX<=(width/2)) && (mouseY>=((height-teksti_kasti_kõrgus)/2))) {
+  } else if ((mouseX<=(width/2)) && (mouseY>=((height-teksti_kasti_korgus)/2))) {
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX, mouseY-60, 55, 55, 15);
     fill(0);
     text("X: "+hover_X, mouseX+11.5, mouseY-39);
     text("Y: "+hover_Y, mouseX+11.5, mouseY-19);
-  } else if ((mouseX>=(width/2)) && (mouseY>=((height-teksti_kasti_kõrgus)/2))) {
+  } else if ((mouseX>=(width/2)) && (mouseY>=((height-teksti_kasti_korgus)/2))) {
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX-60, mouseY-60, 55, 55, 15);
     fill(0);
     text("X: "+ hover_X, mouseX-48.5,mouseY-39);
     text("Y: "+hover_Y, mouseX-48.5, mouseY-19);
-  }else if ((mouseX>=(width/2)) && (mouseY<=((height-teksti_kasti_kõrgus)/2))) {
+  }else if ((mouseX>=(width/2)) && (mouseY<=((height-teksti_kasti_korgus)/2))) {
     strokeWeight(0);
     fill(116,187,251,200);
     rect(mouseX-60, mouseY, 55, 55, 15);
@@ -462,37 +462,37 @@ function mouse_Hover(){
 
 }
 
-function Lõpp(){
+function Lopp(){
 
   
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
-  LÕPETA_NUPP.attribute("disabled","");
+  LOPETA_NUPP.attribute("disabled","");
   
     INPUT_X1.remove();
     INPUT_X2.remove();
     INPUT_Y1.remove();
     INPUT_Y2.remove();
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove();
     yl_text.remove();
     result_text.remove();
-    TeX_võrrand.remove();
+    TeX_vorrand.remove();
     p1_text.remove();
     p2_text.remove();
     current_state_text.remove();
     
   
   
-  Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
+  Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/2-100,height/2-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
   Tulemus.style("line-height","140%");
   
   
-  lõpetamise_tingimus=true;
+  lopetamise_tingimus=true;
 }
 
 
