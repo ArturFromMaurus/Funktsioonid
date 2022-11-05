@@ -66,7 +66,7 @@ function Ylesanne(n){
   } else {
     vabaliige_C_str=str(vabaliige_C)
   }
-  vorrand=round_2(ruutliige_A*X*X+lineaarliige_B*X+vabaliige_C);
+  vorrand=(ruutliige_A*X*X+lineaarliige_B*X+vabaliige_C);
   LaTeX_str="y="+ruutliige_A_str+"x^{2}"+lineaarliige_B_str+"x"+vabaliige_C_str;
   }
   
@@ -111,15 +111,15 @@ function Ylesanne(n){
 //   }
 // }
   
-  punkt_oige=[X, round_2(vorrand)];
-  punkt_vale=[X, round_2(vorrand+random(1,10))];
+  punkt_oige=[X, (vorrand)];
+  punkt_vale=[X, (vorrand+int(random(1,10)))];
   kaks_punkti=[punkt_oige, punkt_vale];
   
-  valik=random(kaks_punkti);
+  valik=punkt_oige;
 
   katex.render( LaTeX_str, LaTeX_vorrand.elt);
   
-  yl_text_2.html("Kontrolli, kas punkt P("+valik[0]+", "+valik[1]+") asub funktsiooniga määratud<br>joonel? Vajadusel ümarda vastused 2 kohta pärast koma.");
+  yl_text_2.html("Kontrolli, kas punkt P("+valik[0]+", "+valik[1]+") asub funktsiooniga määratud<br>joonel?");
 }
 
 function Kontroll(){
