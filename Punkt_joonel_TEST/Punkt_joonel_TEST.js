@@ -115,7 +115,7 @@ function Ylesanne(n){
   punkt_vale=[X, (vorrand+int(random(1,10)))];
   kaks_punkti=[punkt_oige, punkt_vale];
   
-  valik=punkt_oige;
+  valik=random(kaks_punkti);
 
   katex.render( LaTeX_str, LaTeX_vorrand.elt);
   
