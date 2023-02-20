@@ -9,9 +9,101 @@ var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
 var xmax=10;  // Teisisõnu xmin + xmax absoluutväärtused peavad kokku andma jaotiste arvu. 
 var jaotiste_arv=20;
 var teksti_kasti_korgus=300;
+var points_on_plot=0;
+
+var inputX1, inputX2, inputY1, inputY2;
+var table;
+
+
+
 
 function setup() {
-  createCanvas(500,800);
+  canvas = createCanvas(500,800);
+  
+// ------------------------------HTML TABLE--------------------------------------------------
+
+// create a new HTML table element
+var table = document.createElement("table");
+table.setAttribute("id", "myTable");
+
+// set the width of the table to 400px
+table.style.width = "200px";
+
+  table.style.position = "absolute";
+  table.style.left = "35px";
+  table.style.top = "595px";
+  
+// add border styles to the table and td elements
+table.style.border = "1px solid black";
+var td = document.createElement("td");
+td.style.border = "1px solid black";
+
+// create variables to store the values of the input fields
+// var input1, input2, input3, input4
+
+// create two rows and five columns
+for (var i = 0; i < 2; i++) {
+  var row = document.createElement("tr");
+
+  // add the X and Y strings to the first cell of each row
+  var firstCell = document.createElement("td");
+  var text = document.createTextNode(i == 0 ? "X" : "Y");
+  firstCell.appendChild(text);
+  row.appendChild(firstCell);
+
+  for (var j = 0; j < 2; j++) {
+    var cell = document.createElement("td");
+    var sisend = document.createElement("input");
+    
+    // set the width of the input element to 100px
+    sisend.style.width = "70px";
+
+    // set the input element's type attribute to "text"
+    sisend.setAttribute("type", "text");
+
+    // add an ID to the input element
+    sisend.setAttribute("id", "sisend" + ((i *2) + j + 1));
+
+    // add an event listener to the input element to capture user input
+    sisend.addEventListener("input", function() {
+      // get the current value of the input field
+      var inputValue = this.value;
+
+      // assign the current value of the input field to the appropriate variable
+      switch (this.id) {
+        case "sisend1":
+          inputX1 = inputValue;
+          break;
+        case "sisend2":
+          inputX2 = inputValue;
+          break;
+        case "sisend3":
+          inputY1 = inputValue;
+          break;
+        case "sisend4":
+          inputY2 = inputValue;
+      }
+    });
+
+    // append the input element to the table cell
+    cell.appendChild(sisend);
+
+    // append the table cell to the table row
+    row.appendChild(cell);
+  }
+
+  // append the table row to the table
+  table.appendChild(row);
+}
+
+// append the table to the HTML document
+document.body.appendChild(table);
+
+
+    // set the canvas element as the parent of the HTML table
+  canvas.elt.parentNode.insertBefore(table, canvas.elt.nextSibling);
+// ----------------------------------HTML TABLE----------------------------------------------
+  
   x_koord=width/2;
   y_koord=height/2;
   Write_texts();
@@ -21,11 +113,14 @@ function setup() {
 
 
 function draw() {
+  
+  // console.log(table)
+  // table.style.position(25,200);
   clear();
   background(255);
   XYplane(jaotiste_arv, 0.25, 2); //parameetriks on [jaotiste_arv(teljel), tausta_jaotise_paksus, telje_jaotiste_paksus]
   create_a_Point();
-  create_TABLE();
+
   graafik(xmin,xmax, jaotiste_arv);
   mouse_Hover();
   
@@ -113,7 +208,6 @@ function XYplane(jaotiste_arv, tausta_jaotise_paksus, telje_jaotiste_paksus) {
   line(width-15,(height-300)/2+5,width, (height-300)/2); 
 }
 
-points_on_plot=0;
 
 function mouseClicked() {
   
@@ -181,28 +275,13 @@ function Ylesanne(){
   LaTeX_string="y="+str(tous_K)+"x"+vabaliige_B_str;
   
   katex.render(LaTeX_string, TeX_vorrand.elt);
-  yl_text.html("On antud funktsioon:<br><br> Täida väärtustetabel, ning kanna leitud punktid graafikule.");
+  yl_text.html("On antud funktsioon:<br> Täida väärtustetabel, ning kanna leitud punktid graafikule.");
 }
 
-function create_TABLE(){
-  line(35,(height-300)+110,200,(height-300)+110); // horizontal line 1
-  line(35,(height-300)+135,200,(height-300)+135); //horizontal line 2
-  line(35,(height-300)+110,35,(height-300)+160); //horizontal line 3
-  
-  line(35,(height-300)+160,200,(height-300)+160); //vertical line 1
-  line(70,(height-300)+110,70,(height-300)+160); //vertical line 2
-  line(130,(height-300)+110,130,(height-300)+160); //vertical line 3
-  line(200,(height-300)+110,200,(height-300)+160); //vertical line 2
-  push();
-  strokeWeight(0.5);
-  text("X",45,(height-300)+127);
-  text("Y",45,(height-300)+152);
-  pop();
-}
 
 function Write_texts(){
   yl_text=createP("");
-  yl_text.position(35,(height-300)+5);
+  yl_text.position(35,(height-300)+15);
   yl_text.style("font-size","16px");
   yl_text.style("line-height","140%");
   yl_text.style("font-family","'Roboto', sans-serif");
@@ -215,7 +294,7 @@ function Write_texts(){
   
   TeX_vorrand=createP("");
   TeX_vorrand.style("font-size","18px");
-  TeX_vorrand.position(width/2-50,(height-303));
+  TeX_vorrand.position(width/2-50,(height-303)+10);
   
   p1_text=createP("");
   p1_text.position(55,(height-300)+217);
@@ -240,19 +319,19 @@ function Kontroll(){
   
   // ##########################  TABELI KONTROLL ###############################
   
-  if (INPUT_X1.value()=="" || INPUT_X2.value()=="" || INPUT_Y1.value()==""|| INPUT_Y2.value()==""){
+  if (inputX1=="" || inputX2=="" || inputY1==""|| inputY2==""){
     result_text.html("Tabel on tühi!");
     result_text.style("color",color(255,0,0));
     condition_for_finishing_table=false;
-  } else if (INPUT_X1.value() == INPUT_X2.value() || INPUT_X1.value() > INPUT_X2.value()) {
+  } else if (inputX1 == inputX2 || inputX1 > inputX2) {
     result_text.html("X-ide rida peab tabelis olema kasvamisjärjekorras!");
     condition_for_finishing_table=false;
     result_text.style("color",color(255,0,0));
   }
-  else if (INPUT_X1.value() < INPUT_X2.value() ) {
-    func_Y_vaartus_1=tous_K * (INPUT_X1.value()) +vabaliige_B;
-    func_Y_vaartus_2=tous_K * (INPUT_X2.value()) +vabaliige_B;
-    if (INPUT_Y1.value() == func_Y_vaartus_1 && INPUT_Y2.value() == func_Y_vaartus_2){
+  else if (inputX1 < inputX2 ) {
+    func_Y_vaartus_1=tous_K * (inputX1) +vabaliige_B;
+    func_Y_vaartus_2=tous_K * (inputX2) +vabaliige_B;
+    if (inputY1 == func_Y_vaartus_1 && inputY2 == func_Y_vaartus_2){
         result_text.html("Väärtustetabel on ÕIGESTI arvutatud!")
         result_text.style("color",color(0,128,0));
         condition_for_finishing_table=true;
@@ -267,7 +346,7 @@ function Kontroll(){
   // ############################# GRAAFIKU KONTROLL ##############################
   
   // PUNKT A
-  if ( ((round_0(first_point_X/12.5)*12.5)-250)/25==round_0((INPUT_X1.value()*2 )/2 ) && -1*((round_0(first_point_Y/12.5)*12.5)-250)/25 == (round_0((tous_K*INPUT_X1.value()+vabaliige_B)*2)/2)    ) {
+  if ( ((round_0(first_point_X/12.5)*12.5)-250)/25==round_0((inputX1*2 )/2 ) && -1*((round_0(first_point_Y/12.5)*12.5)-250)/25 == (round_0((tous_K*inputX1+vabaliige_B)*2)/2)    ) {
     p1_text.html("Punkt A on korras!");
     p1_text.style('color', color(0,128,0));
     condition_for_finishing_point_A=true;
@@ -278,7 +357,7 @@ function Kontroll(){
       }
   
   // PUNKT B
-    if ( (((round_0(second_point_X/12.5)*12.5)-250)/25) == round_0(INPUT_X2.value()*2 )/2  && -1*((round_0(second_point_Y/12.5)*12.5)-250)/25 == (round_0((tous_K*INPUT_X2.value()+vabaliige_B)*2)/2)) {
+    if ( (((round_0(second_point_X/12.5)*12.5)-250)/25) == round_0(inputX2*2 )/2  && -1*((round_0(second_point_Y/12.5)*12.5)-250)/25 == (round_0((tous_K*inputX2+vabaliige_B)*2)/2)) {
     p2_text.html("Punkt B on korras!");
     p2_text.style('color', color(0, 128, 0));
       condition_for_finishing_point_B=true;
@@ -301,16 +380,17 @@ function Reset(){
   
   if(ylesannete_loendur>0){
     
-    INPUT_X1.remove();
-    INPUT_X2.remove();
-    INPUT_Y1.remove();
-    INPUT_Y2.remove();
     RESET_NUPP.remove();
     LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove()
-    
+
   }
   
+
+    document.getElementById("sisend1").value = "";
+    document.getElementById("sisend2").value = "";
+    document.getElementById("sisend3").value = "";
+    document.getElementById("sisend4").value = "";
   
   
   condition_for_finishing_table=false;
@@ -328,7 +408,7 @@ function Reset(){
   p1_text.html("");
   p2_text.html("");
   Ylesanne();
-    KONTROLL_NUPP=createButton("Kontrolli");
+  KONTROLL_NUPP=createButton("Kontrolli");
   KONTROLL_NUPP.style('padding','10px 20px');
   KONTROLL_NUPP.style('background-color','MidNightBlue');
   KONTROLL_NUPP.style('color','white');
@@ -360,25 +440,6 @@ function Reset(){
   KONTROLL_NUPP.attribute("enabled","");
   RESET_NUPP.position(4*width/5-60,(height-300)+90);
   LOPETA_NUPP.position(4*width/5-90, (height-90));
-  
-  
-  // ###################### VÄÄRTUSTETABELI SISENDID #################################
-  INPUT_X1=createInput();
-  INPUT_X1.size(50,17)
-  INPUT_X1.position(71,(height-300)+111);
-  
-  
-  INPUT_X2=createInput();
-  INPUT_X2.size(59,17)
-  INPUT_X2.position(132,(height-300)+111);
-  
-  INPUT_Y1=createInput();
-  INPUT_Y1.size(50,17)
-  INPUT_Y1.position(71,(height-300)+136);
-  
-  INPUT_Y2=createInput();
-  INPUT_Y2.size(59,17)
-  INPUT_Y2.position(132,(height-300)+136);
   
   ylesannete_loendur=ylesannete_loendur+1;
 
@@ -463,16 +524,14 @@ function mouse_Hover(){
 }
 
 function Lopp(){
-
+  
+  let table = document.getElementById("myTable");
+  table.style.display = "none";
   
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
   LOPETA_NUPP.attribute("disabled","");
   
-    INPUT_X1.remove();
-    INPUT_X2.remove();
-    INPUT_Y1.remove();
-    INPUT_Y2.remove();
     RESET_NUPP.remove();
     LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove();
@@ -482,8 +541,6 @@ function Lopp(){
     p1_text.remove();
     p2_text.remove();
     current_state_text.remove();
-    
-  
   
   Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/2-100,height/2-100);
