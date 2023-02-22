@@ -875,7 +875,7 @@ function Lopp(){
   
   let table = document.getElementById("myTable");
   table.style.display = "none";
-
+  
   infoNupp.remove();
   
   KONTROLL_NUPP.attribute("disabled","");
