@@ -11,17 +11,76 @@ var ylesannete_loendur=0;
 var oige_vastus=0;
 var lopetamise_tingimus=false;
 var teksti_kasti_korgus=300;
-x1_id_korras=false;
-y1_id_korras=false;
-punkt1_on_korras=false;
+var x1_id_korras=false;
+var y1_id_korras=false;
+var punkt1_on_korras=false;
   
-x2_id_korras=false;
-y2_id_korras=false;
-punkt2_on_korras=false;
+var x2_id_korras=false;
+var y2_id_korras=false;
+var punkt2_on_korras=false;
 
 var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
 var xmax=10;  // Teisisõnu xmin + xmax absoluutväärtused peavad kokku andma jaotiste arvu. 
 var jaotiste_arv=20;
+
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.85)"
+tooltip.style.color = "white";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="300px";
+tooltip.style.borderRadius="25px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Punkti joonisele märkima ei pea!<br>Lõikepunkti koordinaadid ümarda 3 kohta pärast koma.<br><br>Testi eest saab +1 punkti kui lõikepunktid on õigesti leitud.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ=''
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+infoNupp.style.top="610px";
+infoNupp.style.left="535px"
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft-350) + "px";
+  tooltip.style.top = (infoNupp.offsetTop-190 ) + "px";
+  infoNupp.style.background="rgb(224,222,222)"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
 
 
 function setup() {
@@ -186,8 +245,8 @@ function Ylesanne(){
   
   diskrim=(lineaarliige_B-tous_K1)*(lineaarliige_B-tous_K1)-4*ruutliige_A*(vabaliige_C-vabaliige_B1);
   
-  if (diskrim<0){
-    while( diskrim<0){ 
+  if (diskrim<0 || !Number.isInteger(Math.sqrt(diskrim)) ){
+    while( diskrim<0 || !Number.isInteger(Math.sqrt(diskrim))){ 
       tous_K1=(round_0(random(-50,50)/5)*5)/10;
       vabaliige_B1=(round_0(random(-50,50)/5)*5)/10;
       ruutliige_A=(round_0(random(-50,50)/5)*5)/10;
@@ -302,6 +361,8 @@ function Kontroll(){
   vorrandi_VP2=round_1(tous_K1*sisend_x2+vabaliige_B1);
   vorrandi_PP2=round_1(ruutliige_A*sisend_x2*sisend_x2+lineaarliige_B*sisend_x2+vabaliige_C);
   
+  console.log(vorrandi_VP1, vorrandi_PP1)
+  console.log(vorrandi_VP2, vorrandi_PP2)
   
   if (vorrandi_VP1==vorrandi_PP1){
     x1_id_korras=true;
@@ -570,6 +631,7 @@ function Lopp(){
     TeX_punkti_koord.remove();
     TeX_punkti_koord2.remove();
     
+    infoNupp.remove();
   
   
   Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
