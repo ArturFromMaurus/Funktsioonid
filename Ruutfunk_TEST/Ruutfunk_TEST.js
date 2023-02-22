@@ -12,9 +12,193 @@ var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
 var xmax=10;  // Teisisõnu xmin + xmax absoluutväärtused peavad kokku andma jaotiste arvu. 
 var jaotiste_arv=20;
 
+var inputX1, inputX2, inputX3, inputX4, inputX5, inputX6, inputX7, inputY1, inputY2, inputY3, inputY4, inputY5, inputY6, inputY7;
+var table;
+
+
+
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.85)"
+tooltip.style.color = "white";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="600px";
+tooltip.style.borderRadius="25px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Punkti saab joonisele märkida hiireklõpsuga.<br>Punkt A vastab tabeli esimesele veerule ning punkt B teisele jne.<br>Punktide eemaldamiseks tuleb hiirt veel kord klõpsata (kokku 8 klõpsu) ja alustada uuesti.<br>Tabeli neljandasse veergu paiguta haripunkt. Tabeli teisse ja eelviimasesse veergu nullkohad.<br><br>Testi eest saab +1 punkti kui tabel ning joonis on edukalt loodud.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ=''
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+infoNupp.style.top="810px";
+infoNupp.style.left="735px"
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft-650) + "px";
+  tooltip.style.top = (infoNupp.offsetTop-300 ) + "px";
+  infoNupp.style.background="rgb(224,222,222)"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
+
+
+
 
 function setup() {
-  createCanvas(800,800+teksti_kasti_korgus);
+  canvas=createCanvas(800,800+teksti_kasti_korgus);
+  
+  // ------------------------------HTML TABLE--------------------------------------------------
+
+// create a new HTML table element
+var table = document.createElement("table");
+table.setAttribute("id", "myTable");
+table.style.zIndex="1"
+// set the width of the table to 400px
+table.style.width = "700px";
+
+  table.style.position = "absolute";
+  table.style.left = "35px";
+  table.style.top = "930px";
+  
+// add border styles to the table and td elements
+table.style.border = "1px solid black";
+var td = document.createElement("td");
+td.style.border = "1px solid black";
+
+// create variables to store the values of the input fields
+// var input1, input2, input3, input4
+
+// create two rows and five columns
+for (var i = 0; i < 2; i++) {
+  var row = document.createElement("tr");
+
+  // add the X and Y strings to the first cell of each row
+  var firstCell = document.createElement("td");
+  var text = document.createTextNode(i == 0 ? "X" : "Y");
+  firstCell.appendChild(text);
+  row.appendChild(firstCell);
+
+  for (var j = 0; j < 7; j++) {
+    var cell = document.createElement("td");
+    var sisend = document.createElement("input");
+    
+    // set the width of the input element to 100px
+    sisend.style.width = "70px";
+
+    // set the input element's type attribute to "text"
+    sisend.setAttribute("type", "text");
+
+    // add an ID to the input element
+    sisend.setAttribute("id", "sisend" + ((i * 7) + j + 1));
+
+    // add an event listener to the input element to capture user input
+    sisend.addEventListener("input", function() {
+      // get the current value of the input field
+      var inputValue = this.value;
+
+      // assign the current value of the input field to the appropriate variable
+      switch (this.id) {
+        case "sisend1":
+          inputX1 = inputValue;
+          break;
+        case "sisend2":
+          inputX2 = inputValue;
+          break;
+        case "sisend3":
+          inputX3 = inputValue;
+          break;
+        case "sisend4":
+          inputX4 = inputValue;
+          break;
+        case "sisend5":
+          inputX5 = inputValue;
+          break;
+        case "sisend6":
+          inputX6 = inputValue;
+          break;
+        case "sisend7":
+          inputX7 = inputValue;
+          break;
+        case "sisend8":
+          inputY1 = inputValue;
+          break;
+        case "sisend9":
+          inputY2 = inputValue;
+          break;
+        case "sisend10":
+          inputY3 = inputValue;
+          break;
+        case "sisend11":
+          inputY4 = inputValue;
+          break;
+        case "sisend12":
+          inputY5 = inputValue;
+          break;
+        case "sisend13":
+          inputY6 = inputValue;
+          break;
+        case "sisend14":
+          inputY7 = inputValue;
+      }
+    });
+
+    // append the input element to the table cell
+    cell.appendChild(sisend);
+
+    // append the table cell to the table row
+    row.appendChild(cell);
+  }
+
+  // append the table row to the table
+  table.appendChild(row);
+}
+
+// append the table to the HTML document
+document.body.appendChild(table);
+
+
+    // set the canvas element as the parent of the HTML table
+  canvas.elt.parentNode.insertBefore(table, canvas.elt.nextSibling);
+// ----------------------------------HTML TABLE----------------------------------------------
+  
+  
+  
   x_koord=width/2;
   y_koord=height/2;
   Write_texts();
@@ -26,7 +210,6 @@ function draw() {
   background(255);
   XYplane(jaotiste_arv, 0.25, 2); //parameetriks on [jaotiste_arv(teljel), tausta_jaotise_paksus, telje_jaotiste_paksus]
   create_a_Point();
-  create_TABLE();
   graafik(xmin,xmax, jaotiste_arv);
   mouse_Hover()
   
@@ -179,24 +362,55 @@ function create_a_Point(){
   }
   
 }
+function random_integer(n){
+  randomInt=Math.floor(Math.random()*2*n)-n;
+  return randomInt
+}
 
 function Ylesanne(){
   
-  ruutliige=(round_0(random(-50,50)/5)*5)/10;
-  vabaliige_B=(round_0(random(-50,50)/5)*5)/10;
-  lineaarliige=(round_0(random(-50,50)/5)*5)/10;
-  diskrim = lineaarliige*lineaarliige-4*ruutliige*vabaliige_B;
   
-  if (diskrim<0){
-  while (diskrim<0){
-    ruutliige=(round_0(random(-50,50)/5)*5)/10;
-    vabaliige_B=(round_0(random(-50,50)/5)*5)/10;
-    lineaarliige=(round_0(random(-50,50)/5)*5)/10;
+  while (true){
+    a=0;
+    b=0;
+    c=0;
+    while (a==0 || (b*b-4*a*c)<0 || b==0 || c==0){
+       a=random_integer(10)
+       b=random_integer(10)
+       c=random_integer(10)
+    }
+    Hx=haripunkt(a,b,c)[0];
+    Hy=haripunkt(a,b,c)[1];
+    X1=NK(a,b,c)[0];
+    X2=NK(a,b,c)[1];
     
-    diskrim=lineaarliige*lineaarliige-4*ruutliige*vabaliige_B
-    //console.log("Esines negatiivne discrim")
+    if (Number.isInteger(Hx) && Number.isInteger(Hy) && Number.isInteger(X1) && Number.isInteger(X2) && abs(Hx-X1)>=1 && abs(Hx-X2)>=1 && abs(Hy)<10){
+      break
+    }
+  
   }
-}
+  
+  console.log(a,b,c)
+  console.log(Hx,Hy)
+  console.log(X1,X2)
+  
+  
+  //---------------------------------------------------------------
+  ruutliige=a
+  vabaliige_B=c
+  lineaarliige=b
+  // diskrim = lineaarliige*lineaarliige-4*ruutliige*vabaliige_B;
+  
+//   if (diskrim<0){
+//   while (diskrim<0){
+//     ruutliige=(round_0(random(-50,50)/5)*5)/10;
+//     vabaliige_B=(round_0(random(-50,50)/5)*5)/10;
+//     lineaarliige=(round_0(random(-50,50)/5)*5)/10;
+    
+//     diskrim=lineaarliige*lineaarliige-4*ruutliige*vabaliige_B
+//     //console.log("Esines negatiivne discrim")
+//   }
+// }
   
     
   if (vabaliige_B>=0){
@@ -218,33 +432,6 @@ function Ylesanne(){
   katex.render( LaTeX_string, TeX_text.elt);
 }
 
-function create_TABLE(){
-  
-   line(35,(height-teksti_kasti_korgus)+130,550,(height-teksti_kasti_korgus)+130); // horizontal line 1
-  line(35,(height-teksti_kasti_korgus)+155,550,(height-teksti_kasti_korgus)+155); //horizontal line 2
-  line(35,(height-teksti_kasti_korgus)+180,550,(height-teksti_kasti_korgus)+180); //horizontal line 3
-  
-  
-  line(35,(height-teksti_kasti_korgus)+130,35,(height-teksti_kasti_korgus)+180); //vertical line 1
-  line(70,(height-teksti_kasti_korgus)+130,70,(height-teksti_kasti_korgus)+180); //vertical line 2
-  line(130,(height-teksti_kasti_korgus)+130,130,(height-teksti_kasti_korgus)+180); //vertical line 3
-  line(200,(height-teksti_kasti_korgus)+130,200,(height-teksti_kasti_korgus)+180); //vertical line 4
-  line(270,(height-teksti_kasti_korgus)+130,270,(height-teksti_kasti_korgus)+180); //vertical line 5
-  line(340,(height-teksti_kasti_korgus)+130,340,(height-teksti_kasti_korgus)+180); //vertical line 6
-  line(410,(height-teksti_kasti_korgus)+130,410,(height-teksti_kasti_korgus)+180); //vertical line 7
-  line(480,(height-teksti_kasti_korgus)+130,480,(height-teksti_kasti_korgus)+180); //vertical line 8
-  line(550,(height-teksti_kasti_korgus)+130,550,(height-teksti_kasti_korgus)+180); //vertical line 9
-  
-  push();
-  strokeWeight(0.5);
-  text("X",45,(height-teksti_kasti_korgus)+147);
-  text("Y",45,(height-teksti_kasti_korgus)+172);
-  pop();
-  
-  
-  
-  
-}
 
 function Write_texts(){
   yl_text=createP("On antud funktsioon: <br><br>Täida funktsiooni väärtustetabel, ning kanna punktid graafikule.<br>Tulemused ümarda 1 koht pärast koma.<br><br><br><br><br>Praegune seis:<br><br> 1) <br> 2) <br> 3)  ");
@@ -325,23 +512,23 @@ function Kontroll(){
   // ##########################  TABELI KONTROLL ###############################
   
   X_ide_massiiv=Array(8);
-  X_ide_massiiv[0]=INPUT_X1.value();
-  X_ide_massiiv[1]=INPUT_X2.value();
-  X_ide_massiiv[2]=INPUT_X3.value();
-  X_ide_massiiv[3]=INPUT_X4.value();
-  X_ide_massiiv[4]=INPUT_X5.value();
-  X_ide_massiiv[5]=INPUT_X6.value();
-  X_ide_massiiv[6]=INPUT_X7.value();
+  X_ide_massiiv[0]=inputX1;
+  X_ide_massiiv[1]=inputX2;
+  X_ide_massiiv[2]=inputX3;
+  X_ide_massiiv[3]=inputX4;
+  X_ide_massiiv[4]=inputX5;
+  X_ide_massiiv[5]=inputX6;
+  X_ide_massiiv[6]=inputX7;
   //console.log(X_ide_massiiv);
   
   Y_ide_massiiv=Array(8);
-  Y_ide_massiiv[0]=INPUT_Y1.value();
-  Y_ide_massiiv[1]=INPUT_Y2.value();
-  Y_ide_massiiv[2]=INPUT_Y3.value();
-  Y_ide_massiiv[3]=INPUT_Y4.value();
-  Y_ide_massiiv[4]=INPUT_Y5.value();
-  Y_ide_massiiv[5]=INPUT_Y6.value();
-  Y_ide_massiiv[6]=INPUT_Y7.value();
+  Y_ide_massiiv[0]=inputY1;
+  Y_ide_massiiv[1]=inputY2;
+  Y_ide_massiiv[2]=inputY3;
+  Y_ide_massiiv[3]=inputY4;
+  Y_ide_massiiv[4]=inputY5;
+  Y_ide_massiiv[5]=inputY6;
+  Y_ide_massiiv[6]=inputY7;
   
   
   //----- Kas tabelis on leitud nullkohad?-----
@@ -408,15 +595,15 @@ function Kontroll(){
     result_text.style("color","red");
   }
   else if (tyhjuse_tingimus==false && ei_ole_kasvav==false && nullkohad_tingimus==true && haripunkti_tingimus==true) {
-    func_Y_vaartus_1=round_1(( ruutliige*INPUT_X1.value()*INPUT_X1.value()+lineaarliige*INPUT_X1.value()+vabaliige_B));
-    func_Y_vaartus_2=round_1(( ruutliige*INPUT_X2.value()*INPUT_X2.value()+lineaarliige*INPUT_X2.value()+vabaliige_B))
-    func_Y_vaartus_3=round_1(( ruutliige*INPUT_X3.value()*INPUT_X3.value()+lineaarliige*INPUT_X3.value()+vabaliige_B))
-    func_Y_vaartus_4=round_1(( ruutliige*INPUT_X4.value()*INPUT_X4.value()+lineaarliige*INPUT_X4.value()+vabaliige_B))
-    func_Y_vaartus_5=round_1(( ruutliige*INPUT_X5.value()*INPUT_X5.value()+lineaarliige*INPUT_X5.value()+vabaliige_B))
-    func_Y_vaartus_6=round_1(( ruutliige*INPUT_X6.value()*INPUT_X6.value()+lineaarliige*INPUT_X6.value()+vabaliige_B))
-    func_Y_vaartus_7=round_1(( ruutliige*INPUT_X7.value()*INPUT_X7.value()+lineaarliige*INPUT_X7.value()+vabaliige_B))
-    //console.log(func_Y_vaartus_1,func_Y_vaartus_2, func_Y_vaartus_3, func_Y_vaartus_4, func_Y_vaartus_5,func_Y_vaartus_6,func_Y_vaartus_7)
-    if (round_1(INPUT_Y1.value()) == func_Y_vaartus_1 && round_1(INPUT_Y2.value()) == func_Y_vaartus_2 && round_1(INPUT_Y3.value())==func_Y_vaartus_3 && round_1(INPUT_Y4.value())==func_Y_vaartus_4 && round_1(INPUT_Y5.value())==func_Y_vaartus_5 && round_1(INPUT_Y6.value()) == func_Y_vaartus_6 && round_1(INPUT_Y7.value()) == func_Y_vaartus_7){
+    func_Y_vaartus_1=round_1(( ruutliige*inputX1*inputX1+lineaarliige*inputX1+vabaliige_B));
+    func_Y_vaartus_2=round_1(( ruutliige*inputX2*inputX2+lineaarliige*inputX2+vabaliige_B))
+    func_Y_vaartus_3=round_1(( ruutliige*inputX3*inputX3+lineaarliige*inputX3+vabaliige_B))
+    func_Y_vaartus_4=round_1(( ruutliige*inputX4*inputX4+lineaarliige*inputX4+vabaliige_B))
+    func_Y_vaartus_5=round_1(( ruutliige*inputX5*inputX5+lineaarliige*inputX5+vabaliige_B))
+    func_Y_vaartus_6=round_1(( ruutliige*inputX6*inputX6+lineaarliige*inputX6+vabaliige_B))
+    func_Y_vaartus_7=round_1(( ruutliige*inputX7*inputX7+lineaarliige*inputX7+vabaliige_B))
+    console.log(func_Y_vaartus_1,func_Y_vaartus_2, func_Y_vaartus_3, func_Y_vaartus_4, func_Y_vaartus_5,func_Y_vaartus_6,func_Y_vaartus_7)
+    if (round_1(inputY1) == func_Y_vaartus_1 && round_1(inputY2) == func_Y_vaartus_2 && round_1(inputY3)==func_Y_vaartus_3 && round_1(inputY4)==func_Y_vaartus_4 && round_1(inputY5)==func_Y_vaartus_5 && round_1(inputY6) == func_Y_vaartus_6 && round_1(inputY7) == func_Y_vaartus_7){
         result_text.html("Väärtustetabel on ÕIGESTI arvutatud!")
         condition_for_finishing_table=true;
         result_text.style("color","green");
@@ -521,28 +708,26 @@ function Reset(){
   
   if(ylesannete_loendur>0){
     
-    INPUT_X1.remove();
-    INPUT_X2.remove();
-    INPUT_X3.remove();
-    INPUT_X4.remove();
-    INPUT_X5.remove();
-    INPUT_X6.remove();
-    INPUT_X7.remove();
-    
-    INPUT_Y1.remove();
-    INPUT_Y2.remove();
-    INPUT_Y3.remove();
-    INPUT_Y4.remove();
-    INPUT_Y5.remove();
-    INPUT_Y6.remove();
-    INPUT_Y7.remove();
     RESET_NUPP.remove();
     LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove()
     
   }
   
-  
+    document.getElementById("sisend1").value = "";
+    document.getElementById("sisend2").value = "";
+    document.getElementById("sisend3").value = "";
+    document.getElementById("sisend4").value = "";
+    document.getElementById("sisend5").value = "";
+    document.getElementById("sisend6").value = "";
+    document.getElementById("sisend7").value = "";
+    document.getElementById("sisend8").value = "";
+    document.getElementById("sisend9").value = "";
+    document.getElementById("sisend10").value = "";
+    document.getElementById("sisend11").value = "";
+    document.getElementById("sisend12").value = "";
+    document.getElementById("sisend13").value = "";
+    document.getElementById("sisend14").value = "";
   
   condition_for_finishing_table=false;
   condition_for_finishing_point_A=false;
@@ -600,67 +785,7 @@ for (var i=0; i<7; i++){
 
   KONTROLL_NUPP.position(4*width/5-250, (height-teksti_kasti_korgus)+0);
   RESET_NUPP.position(4*width/5-50,(height-teksti_kasti_korgus)+0);
-  LOPETA_NUPP.position(4*width/5-75, (height-200));
-  
-  // ###################### VÄÄRTUSTETABELI SISENDID #################################
-  INPUT_X1=createInput();
-  INPUT_X1.size(50,17)
-  INPUT_X1.position(71,(height-teksti_kasti_korgus)+131);
-  
-  
-  INPUT_X2=createInput();
-  INPUT_X2.size(59,17)
-  INPUT_X2.position(132,(height-teksti_kasti_korgus)+131);
-  
-  
-  INPUT_X3=createInput();
-  INPUT_X3.size(59,17)
-  INPUT_X3.position(202,(height-teksti_kasti_korgus)+131);
-  
-  INPUT_X4=createInput();
-  INPUT_X4.size(58,17)
-  INPUT_X4.position(272,(height-teksti_kasti_korgus)+131);
-  
-  INPUT_X5=createInput();
-  INPUT_X5.size(58,17)
-  INPUT_X5.position(342,(height-teksti_kasti_korgus)+131);
-  
-  INPUT_X6=createInput();
-  INPUT_X6.size(58,17)
-  INPUT_X6.position(412,(height-teksti_kasti_korgus)+131);
-  
-  INPUT_X7=createInput();
-  INPUT_X7.size(58,17)
-  INPUT_X7.position(482,(height-teksti_kasti_korgus)+131);
-  
-  
-  INPUT_Y1=createInput();
-  INPUT_Y1.size(50,17)
-  INPUT_Y1.position(71,(height-teksti_kasti_korgus)+156);
-  
-  INPUT_Y2=createInput();
-  INPUT_Y2.size(59,17)
-  INPUT_Y2.position(132,(height-teksti_kasti_korgus)+156);
-  
-  INPUT_Y3=createInput();
-  INPUT_Y3.size(59,17)
-  INPUT_Y3.position(202,(height-teksti_kasti_korgus)+156);
-  
-  INPUT_Y4=createInput();
-  INPUT_Y4.size(59,17)
-  INPUT_Y4.position(272,(height-teksti_kasti_korgus)+156);
-  
-  INPUT_Y5=createInput();
-  INPUT_Y5.size(59,17)
-  INPUT_Y5.position(342,(height-teksti_kasti_korgus)+156);
-  
-  INPUT_Y6=createInput();
-  INPUT_Y6.size(59,17)
-  INPUT_Y6.position(412,(height-teksti_kasti_korgus)+156); 
-  
-  INPUT_Y7=createInput();
-  INPUT_Y7.size(59,17)
-  INPUT_Y7.position(482,(height-teksti_kasti_korgus)+156);
+  LOPETA_NUPP.position(4*width/5-75, (height-170));
   
   
   ylesannete_loendur=ylesannete_loendur+1;
@@ -748,25 +873,14 @@ function mouse_Hover(){
 function Lopp(){
 
   
+  let table = document.getElementById("myTable");
+  table.style.display = "none";
+  
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
   LOPETA_NUPP.attribute("disabled","");
   
-    INPUT_X1.remove();
-    INPUT_X2.remove();
-    INPUT_X3.remove();
-    INPUT_X4.remove();
-    INPUT_X5.remove();
-    INPUT_X6.remove();
-    INPUT_X7.remove();
-    
-    INPUT_Y1.remove();
-    INPUT_Y2.remove();
-    INPUT_Y3.remove();
-    INPUT_Y4.remove();
-    INPUT_Y5.remove();
-    INPUT_Y6.remove();
-    INPUT_Y7.remove();
+
     RESET_NUPP.remove();
     LOPETA_NUPP.remove();
     KONTROLL_NUPP.remove()
@@ -793,6 +907,21 @@ function Lopp(){
 }
 
 
+function NK(a,b,c){
+    x1=(-b+Math.sqrt(b*b-4*a*c))/(2*a)
+    x2=(-b-Math.sqrt(b*b-4*a*c))/(2*a)
+    return [x1, x2]
+}
+
+function haripunkt(a,b,c){
+    Xh=-b/(2*a)
+    Yh=funk(Xh)
+    return [Xh, Yh]
+}
+
+function funk(Xtemp){
+  return a*Xtemp*Xtemp+b*Xtemp+c
+}
 
 
 function round_0(v) {
