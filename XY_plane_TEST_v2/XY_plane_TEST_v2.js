@@ -1,7 +1,7 @@
 var X=[];
 var Y=[];
 var x_koord=0.0, y_koord=0.0;
-
+ 
 var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
 var xmax=10;  // Teisisõnu xmin + xmax absoluutväärtused peavad kokku andma jaotiste arvu. 
 var jaotiste_arv=20;
