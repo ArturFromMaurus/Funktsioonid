@@ -2,7 +2,7 @@ var r=255,g=255,b=255;
 var ylesannete_loendur=0;
 var oige_vastus=0;
 var lopetamise_tingimus=false;
-
+ 
 function setup() {
   createCanvas(650, 300);
   background(255);
