@@ -15,9 +15,68 @@ var xmin=-10; // HETKE SEISUGA PEAVAD NEED KOLM KOKKU KLAPPIMA!!!
 var xmax=10;  // Teisisõnu xmin + xmax absoluutväärtused peavad kokku andma jaotiste arvu. 
 var jaotiste_arv=20;
 
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.85)"
+tooltip.style.color = "white";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="300px";
+tooltip.style.borderRadius="25px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Punkti saab joonisele märkida hiireklõpsuga.<br><br>Testi eest saab +1 punkti kui tabel ning joonis on edukalt loodud.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ=''
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+infoNupp.style.top="510px";
+infoNupp.style.left="435px"
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft-350) + "px";
+  tooltip.style.top = (infoNupp.offsetTop-170 ) + "px";
+  infoNupp.style.background="rgb(224,222,222)"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
+
 
 function setup() {
-  createCanvas(500,800);
+  canvas=createCanvas(500,800);
   x_koord=width/2;
   y_koord=height/2;
   Write_texts();
@@ -145,19 +204,32 @@ function create_a_Point(){
 }
 
 function Ylesanne(){
-  tous_K1=(round_0(random(-100,100)/5)*5)/10;
-  tous_K2=(round_0(random(-100,100)/5)*5)/10;
-  vabaliige_B1=(round_0(random(-50,50)/5)*5)/10;
-  vabaliige_B2=(round_0(random(-50,50)/5)*5)/10;
 
-  
-  
-  if (tous_K1<0 && tous_K2<0){
-    tous_K1=tous_K1*(-1);
-  } else if (tous_K1>0 && tous_K2>0){
-    tous_K1=tous_K1*(-1);
+  tous_K1=0
+  tous_K2=3
+  vabaliige_B1=10000
+  vabaliige_B2=0
+  y=tous_K1*((vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2))+vabaliige_B1
+  x=(vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2)
+  // console.log(str((vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2)).split(".")[1].length<=1)
+
+  while ( !Number.isInteger(x) || str(x).split(".")[1]=="5" ) { 
+    tous_K1=random_integer(15);
+    tous_K2=random_integer(15);
+    vabaliige_B1=random_integer(15);
+    vabaliige_B2=random_integer(15);
+    y=tous_K1*((vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2))+vabaliige_B1
+    x=(vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2)
+      if (abs(y)>10 || abs(x)>9.5){
+          tous_K1=0
+          tous_K2=3
+          vabaliige_B1=10000
+          vabaliige_B2=0
+          x=(vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2)
+      }
   }
-
+  
+  console.log((vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2), tous_K1*((vabaliige_B2-vabaliige_B1)/(tous_K1-tous_K2))+vabaliige_B1)
   
   if (vabaliige_B1>=0){
     vabaliige_B1_str="+ "+str(vabaliige_B1);
@@ -180,7 +252,7 @@ function Ylesanne(){
   yl_text.html("On antud funktsioonid:<br><br><br> Kanna funktsioonide lõikepunkti koordinaadid lünkadesse,<br>tulemused ümarda 3 kohta pärast koma, ning kanna leitud<br> punkt graafikule ligikaudselt.");
   yl_text2.html("Vastus:")
   
-  punkt_P=str("L( \\hspace{40px}; \\hspace{40px}     )");
+  punkt_P=str("L( \\hspace{35px}; \\hspace{35px}     )");
   katex.render(punkt_P, TeX_punkti_koord.elt);
 }
 
@@ -232,18 +304,12 @@ function Kontroll(){
   y_id_korras=false;
   punkt_on_korras=false;
   
-  sisend_x=round_3(INPUT_X.value());
-  sisend_y=round_1(INPUT_Y.value());
-  vorrandi_VP=round_3(tous_K1*sisend_x+vabaliige_B1);
-  vorrandi_PP=round_3(tous_K2*sisend_x+vabaliige_B2);
-  vorrandi_PP=round_2(vorrandi_PP);
-  vorrandi_VP=round_2(vorrandi_VP);
-  vorrandi_VP=round_1(vorrandi_VP);
-  vorrandi_PP=round_1(vorrandi_PP);
+  sisend_x=INPUT_X.value();
+  sisend_y=INPUT_Y.value();
+  vorrandi_VP=tous_K1*sisend_x+vabaliige_B1;
+  vorrandi_PP=tous_K2*sisend_x+vabaliige_B2;
   
-  //console.log(sisend_x,sisend_y,vorrandi_VP, vorrandi_PP);
-  
-  
+  console.log(sisend_x,sisend_y,vorrandi_VP, vorrandi_PP);
   
   if (vorrandi_VP==vorrandi_PP){
     x_id_korras=true;
@@ -256,7 +322,6 @@ function Kontroll(){
   } else {
     y_id_korras=false;
   }
-  
   
   // ######################## KAS GRAAFIKULE MÄRGITUD PUNKT OK? ########################
   
@@ -488,7 +553,7 @@ function Lopp(){
     TeX_vorrand.remove();
     TeX_punkti_koord.remove();
     
-  
+  infoNupp.remove();
   
   Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/2-100,height/2-100);
@@ -516,4 +581,10 @@ function round_2(v) {
 
 function round_3(v) {
     return (Math.sign(v) * Math.round(Math.abs(v)*1000)/1000 )
+}
+
+
+function random_integer(n){
+  randomInt=Math.floor(Math.random()*2*n)-n;
+  return randomInt
 }
