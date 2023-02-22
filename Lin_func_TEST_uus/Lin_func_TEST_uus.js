@@ -15,6 +15,63 @@ var inputX1, inputX2, inputY1, inputY2;
 var table;
 
 
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.85)"
+tooltip.style.color = "white";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="400px";
+tooltip.style.borderRadius="25px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Punkti saab joonisele märkida hiireklõpsuga.<br>Punkt A vastab tabeli esimesele veerule ning punkt B teisele. Punktide eemaldamiseks tuleb hiirt veel kord klõpsata (kokku 3 klõpsu) ja alustada uuesti.<br><br>Testi eest saab +1 punkti kui tabel ning joonis on edukalt loodud.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ=''
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+infoNupp.style.top="505px";
+infoNupp.style.left="430px"
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft-420) + "px";
+  tooltip.style.top = (infoNupp.offsetTop-350 ) + "px";
+  infoNupp.style.background="rgb(224,222,222)"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
 
 
 function setup() {
@@ -275,13 +332,13 @@ function Ylesanne(){
   LaTeX_string="y="+str(tous_K)+"x"+vabaliige_B_str;
   
   katex.render(LaTeX_string, TeX_vorrand.elt);
-  yl_text.html("On antud funktsioon:<br> Täida väärtustetabel, ning kanna leitud punktid graafikule.");
+  yl_text.html("On antud funktsioon:<br><br> Täida väärtustetabel, ning kanna leitud punktid graafikule.");
 }
 
 
 function Write_texts(){
   yl_text=createP("");
-  yl_text.position(35,(height-300)+15);
+  yl_text.position(35,(height-300)+5);
   yl_text.style("font-size","16px");
   yl_text.style("line-height","140%");
   yl_text.style("font-family","'Roboto', sans-serif");
@@ -294,7 +351,7 @@ function Write_texts(){
   
   TeX_vorrand=createP("");
   TeX_vorrand.style("font-size","18px");
-  TeX_vorrand.position(width/2-50,(height-303)+10);
+  TeX_vorrand.position(width/2-50,(height-303));
   
   p1_text=createP("");
   p1_text.position(55,(height-300)+217);
