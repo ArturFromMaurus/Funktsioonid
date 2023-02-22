@@ -1,7 +1,7 @@
 var oige_vastus=0;
 var ylesannete_loendur=0;
 var lopetamise_tingimus=false;
-
+ 
 function setup() {
   let c= createCanvas(700, 200);
   x_koord=width/2;
