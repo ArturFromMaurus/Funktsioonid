@@ -15,7 +15,7 @@ function setup() {
   y_koord=height/2;
   Write_texts();
   Reset();
-}
+};
 
 
 function draw() {
@@ -55,7 +55,7 @@ function draw() {
     pop();
   }
   
-}
+};
 
 
 
