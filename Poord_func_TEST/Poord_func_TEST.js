@@ -19,8 +19,8 @@ var table;
 
 
 // ----------------------------------------- HTML ToolTip -------------------------------------------
-
-var tooltip = document.createElement("div");
+window.onload = function () {
+tooltip = document.createElement("div");
 tooltip.style.backgroundColor = "rgba(9,9,96,0.85)"
 tooltip.style.color = "white";
 tooltip.style.padding = "10px";
@@ -32,19 +32,19 @@ tooltip.style.width="600px";
 tooltip.style.borderRadius="25px"
 document.body.appendChild(tooltip);
 
-var regularText = document.createElement("div");
+regularText = document.createElement("div");
 regularText.innerHTML = "Punkti saab joonisele märkida hiireklõpsuga.<br>Punkt A vastab tabeli esimesele veerule ning punkt B teisele jne.<br>Punktide eemaldamiseks tuleb hiirt veel kord klõpsata (kokku 9 klõpsu) ja alustada uuesti.<br><br>Tabelis ümarda Y väärtused kümnendikeni (1 koht pärast koma).<br><br>Testi eest saab +1 punkti kui tabel ning joonis on edukalt loodud.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
 
 KaTeX_EQ=''
-var katexEquation = document.createElement("div");
+katexEquation = document.createElement("div");
 tooltip.appendChild(katexEquation);
 
 
 // Info nuppu funktsionaalsus
-var infoNupp = document.createElement("button");
+infoNupp = document.createElement("button");
 infoNupp.innerHTML = "i";
 infoNupp.style.position = "absolute";
 infoNupp.style.margin="20px";
@@ -72,7 +72,7 @@ infoNupp.addEventListener("mouseleave", function() {
   tooltip.style.display = "none";
   infoNupp.style.background="transparent"
 });
-
+}
 // ----------------------------------------- HTML ToolTip -------------------------------------------
 
 
